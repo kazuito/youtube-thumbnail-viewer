@@ -9,7 +9,6 @@ async function injectThumbnail(videoId) {
     let url = `${imgBaseUrl}${imgFileName}default.jpg`;
     let req = new Request(url);
     await fetch(req).then((res) => {
-      console.log(res);
       if (res.status === 200) {
         imgUrl = url;
       }
@@ -53,7 +52,6 @@ async function injectThumbnail(videoId) {
 
 function executeScript(url, tabId) {
   let videoIdMatch = url.match(/(?<=[?&]v=)(.{11})/);
-  console.log(videoIdMatch);
   if (videoIdMatch && videoIdMatch[0]) {
     chrome.scripting.executeScript({
       target: { tabId: tabId },
