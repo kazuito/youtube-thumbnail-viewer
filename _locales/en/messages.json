@@ -1,0 +1,18 @@
+{
+  "extName": {
+    "message": "YouTube Thumbnailer",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Thumbnailer",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Muestre una imagen en miniatura del video que se está reproduciendo en la descripción del video en YouTube.",
+    "description": "Extension Description"
+  },
+  "thumbnailImageTooltip": {
+    "message": "Thumbnail image",
+    "description": "Tooltip message on hover the thumbnail image."
+  }
+}

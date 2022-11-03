@@ -41,8 +41,9 @@ async function injectThumbnail(videoId) {
       .insertAdjacentHTML("afterbegin", img);
 
     // Create Tooltip
+    const tooltipMsg = chrome.i18n.getMessage("thumbnailImageTooltip");
     const tooltip = `
-    <div class="yt-thumb-tooltip">Thumbnail image</div>
+    <div class="yt-thumb-tooltip">${tooltipMsg}</div>
     `;
     document
       .querySelector("#description-inner")

@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Thumbnailer",
-  "short_name": "YT Thumb",
   "version": "0.0.1",
-  "description": "Display thumbnail image in the video description.",
+  "name": "__MSG_extName__",
+  "short_name": "__MSG_extShortName__",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",

@@ -1,0 +1,18 @@
+{
+  "extName": {
+    "message": "YouTubeサムネイラー",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "サムネイラー",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "YouTubeで再生中の動画のサムネイル画像を動画説明欄に表示します。",
+    "description": "Extension Description"
+  },
+  "thumbnailImageTooltip": {
+    "message": "サムネイル画像",
+    "description": "Tooltip message on hover the thumbnail image."
+  }
+}
