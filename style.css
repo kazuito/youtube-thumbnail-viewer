@@ -45,8 +45,10 @@
 .yt-thumb-tooltip {
   position: absolute;
   top: 148px;
-  right: 46px;
+  left: calc(100% - 118px) !important;
+  transform: translateX(-50%);
   z-index: 999;
+  white-space: nowrap;
   display: none;
 
   /* YouTube tooltip */
