@@ -47,9 +47,9 @@
   top: 148px;
   right: 46px;
   z-index: 999;
+  display: none;
 
   /* YouTube tooltip */
-  display: block;
   outline: none;
   font-family: "Roboto", "Noto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -66,6 +66,7 @@
   opacity: 0;
 }
 #description-inline-expander:has(.yt-thumb-link:hover) ~ .yt-thumb-tooltip {
+  display: block;
   /* YouTube tooltip - Show */
   opacity: 0;
   animation-delay: var(--paper-tooltip-delay-in, 500ms);
