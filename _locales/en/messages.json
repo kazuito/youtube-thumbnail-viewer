@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Muestre una imagen en miniatura del video que se está reproduciendo en la descripción del video en YouTube.",
+    "message": "Display a thumbnail image of the video being played in the video description on YouTube.",
     "description": "Extension Description"
   },
   "thumbnailImageTooltip": {
