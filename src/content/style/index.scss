@@ -1,8 +1,7 @@
-:root {
-  --focus-box-shadow-color: #000;
-}
-html[dark]:root {
-  --focus-box-shadow-color: #fff;
+$focus-box-shadow-color: #000;
+
+html[dark] {
+  $focus-box-shadow-color: #fff;
 }
 
 .yt-thumb-container {
@@ -31,6 +30,17 @@ html[dark]:root {
   top: 0;
   left: 0;
   border-radius: 8px;
+
+  .yt-thumb-link:hover & {
+    background: var(--yt-spec-static-overlay-background-heavy);
+  }
+  .yt-thumb-link:focus-visible & {
+    background: var(--yt-spec-static-overlay-background-heavy);
+    box-shadow: 0 0 0 2px $focus-box-shadow-color inset;
+  }
+  .yt-thumb-link:active & {
+    background: var(--yt-spec-static-overlay-background-heavy);
+  }
 }
 .yt-thumb-open-icon {
   display: none;
@@ -38,22 +48,13 @@ html[dark]:root {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.yt-thumb-open-icon path {
-  fill: var(--yt-spec-static-overlay-text-primary);
-}
 
-.yt-thumb-link:is(:hover, :focus-visible) .yt-thumb-interaction-fill {
-  background: var(--yt-spec-static-overlay-background-heavy);
-}
-.yt-thumb-link:focus-visible .yt-thumb-interaction-fill {
-  box-shadow: 0 0 0 2px var(--focus-box-shadow-color) inset;
-}
-.yt-thumb-link:active .yt-thumb-interaction-fill {
-  background: var(--yt-spec-static-overlay-background-heavy);
-}
-.yt-thumb-link:is(:hover, :focus-visible) .yt-thumb-open-icon {
-  display: block;
+  & path {
+    fill: var(--yt-spec-static-overlay-text-primary);
+  }
+  .yt-thumb-link:is(:hover, :focus-visible) & {
+    display: block;
+  }
 }
 
 .yt-thumb-tooltip {
@@ -80,17 +81,18 @@ html[dark]:root {
   padding: 8px;
   border-radius: 4px;
   opacity: 0;
-}
-#description-inline-expander:has(.yt-thumb-link:hover) ~ .yt-thumb-tooltip {
-  display: block;
-  /* YouTube tooltip - Show */
-  opacity: 0;
-  animation-delay: var(--paper-tooltip-delay-in, 500ms);
-  animation-name: keyFrameFadeInOpacity;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: var(--paper-tooltip-duration-in, 500ms);
-  animation-fill-mode: forwards;
+
+  #description-inline-expander:has(.yt-thumb-link:hover) ~ & {
+    display: block;
+    /* YouTube tooltip - Show */
+    opacity: 0;
+    animation-delay: var(--paper-tooltip-delay-in, 500ms);
+    animation-name: keyFrameFadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: var(--paper-tooltip-duration-in, 500ms);
+    animation-fill-mode: forwards;
+  }
 }
 
 /*            */

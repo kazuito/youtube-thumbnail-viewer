@@ -10,9 +10,5 @@
   "extDescription": {
     "message": "Display a thumbnail image of the video being played in the video description on YouTube.",
     "description": "Extension Description"
-  },
-  "thumbnailImageTooltip": {
-    "message": "Thumbnail image",
-    "description": "Tooltip message on hover the thumbnail image."
   }
 }

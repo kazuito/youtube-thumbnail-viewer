@@ -10,9 +10,5 @@
   "extDescription": {
     "message": "Affichez une vignette de la vidéo en cours de lecture dans la description de la vidéo sur YouTube.",
     "description": "Extension Description"
-  },
-  "thumbnailImageTooltip": {
-    "message": "Vignette",
-    "description": "Tooltip message on hover the thumbnail image."
   }
 }
