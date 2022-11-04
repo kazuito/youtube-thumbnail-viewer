@@ -1,3 +1,10 @@
+:root {
+  --focus-box-shadow-color: #000;
+}
+html[dark]:root {
+  --focus-box-shadow-color: #fff;
+}
+
 .yt-thumb-container {
   position: relative;
   float: right;
@@ -8,6 +15,7 @@
   border-radius: 8px;
   padding: 0;
   margin: 0;
+  outline: none !important;
 }
 .yt-thumb-image {
   display: block;
@@ -18,11 +26,11 @@
 .yt-thumb-interaction-fill {
   width: 100%;
   height: 100%;
-  background: #000;
+  background: transparent;
   position: absolute;
   top: 0;
+  left: 0;
   border-radius: 8px;
-  opacity: 0;
 }
 .yt-thumb-open-icon {
   display: none;
@@ -31,14 +39,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.yt-thumb-open-icon path {
+  fill: var(--yt-spec-static-overlay-text-primary);
+}
 
-.yt-thumb-link:hover .yt-thumb-interaction-fill {
-  opacity: 0.3;
+.yt-thumb-link:is(:hover, :focus-visible) .yt-thumb-interaction-fill {
+  background: var(--yt-spec-static-overlay-background-heavy);
+}
+.yt-thumb-link:focus-visible .yt-thumb-interaction-fill {
+  box-shadow: 0 0 0 2px var(--focus-box-shadow-color) inset;
 }
 .yt-thumb-link:active .yt-thumb-interaction-fill {
-  opacity: 0.5;
+  background: var(--yt-spec-static-overlay-background-heavy);
 }
-.yt-thumb-link:hover .yt-thumb-open-icon {
+.yt-thumb-link:is(:hover, :focus-visible) .yt-thumb-open-icon {
   display: block;
 }
 
