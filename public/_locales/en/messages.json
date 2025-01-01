@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "YouTube Thumbnailer",
+    "message": "YouTube Thumbnail Viewer",
     "description": "Extension Name"
   },
   "extShortName": {
-    "message": "Thumbnailer",
+    "message": "Thumbnail",
     "description": "Extension Short-Name"
   },
   "extDescription": {

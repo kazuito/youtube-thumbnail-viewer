@@ -1,5 +1,15 @@
-# YouTube Thumbnailer
+# youtube-thumbnailer
 
-Display thumbnail image in the video description on YouTube.
+To install dependencies:
 
-> :warning: **This extension is not yet released on the Chrome Web Store**
+```bash
+bun install
+```
+
+To run:
+
+```bash
+bun run index.ts
+```
+
+This project was created using `bun init` in bun v1.1.38. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
