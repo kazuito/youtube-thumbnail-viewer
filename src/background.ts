@@ -44,7 +44,7 @@ async function injectThumbnail(videoId: string) {
     }
 
     removeThumbnails();
-    target.insertAdjacentHTML("beforebegin", el);
+    target.insertAdjacentHTML("afterbegin", el);
     clearInterval(interval);
   }, 100);
 }
