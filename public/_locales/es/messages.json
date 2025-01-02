@@ -1,14 +1,14 @@
 {
   "extName": {
-    "message": "YouTube Thumbnail Viewer",
+    "message": "Visor de miniaturas de YouTube",
     "description": "Extension Name"
   },
   "extShortName": {
-    "message": "Thumbnail",
+    "message": "Miniatura",
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Display a thumbnail image in the description area on YouTube.",
+    "message": "Muestra una imagen en miniatura en el área de descripción en YouTube.",
     "description": "Extension Description"
   }
 }

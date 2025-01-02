@@ -1,14 +1,14 @@
 {
   "extName": {
-    "message": "YouTube Thumbnail Viewer",
+    "message": "YouTube サムネくん",
     "description": "Extension Name"
   },
   "extShortName": {
-    "message": "Thumbnail",
+    "message": "サムネくん",
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Display a thumbnail image in the description area on YouTube.",
+    "message": "YouTube動画のサムネイル画像を概要欄に表示するよ",
     "description": "Extension Description"
   }
 }

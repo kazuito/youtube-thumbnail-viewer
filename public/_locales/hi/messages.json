@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "यूट्यूब थंबनेल व्यूअर",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "थंबनेल",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "यूट्यूब पर विवरण क्षेत्र में एक थंबनेल छवि प्रदर्शित करें।",
+    "description": "Extension Description"
+  }
+}
