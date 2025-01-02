@@ -34,17 +34,17 @@ async function injectThumbnail(videoId: string) {
   let attemptCount = 0;
 
   const interval = setInterval(() => {
-    const parent = document.getElementById("description-inline-expander");
+    const target = document.getElementById("description-inline-expander");
 
     if (++attemptCount > attemptLimit) {
       clearInterval(interval);
       return;
-    } else if (!parent) {
+    } else if (!target) {
       return;
     }
 
     removeThumbnails();
-    parent.insertAdjacentHTML("beforebegin", el);
+    target.insertAdjacentHTML("beforebegin", el);
     clearInterval(interval);
   }, 100);
 }
