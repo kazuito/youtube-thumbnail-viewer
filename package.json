@@ -2,7 +2,8 @@
   "name": "youtube-thumbnail-viewer",
   "scripts": {
     "build": "tsx scripts/build.ts",
-    "dev": "tsx scripts/dev.ts"
+    "dev": "tsx scripts/dev.ts",
+    "zip": "zip -r youtube-thumbnail-viewer.zip dist"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.287",
