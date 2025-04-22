@@ -1,21 +1,24 @@
-async function injectThumbnail(videoId: string) {
-  function removeThumbnails() {
-    document.querySelectorAll(".ytv-container").forEach((el) => el.remove());
-  }
+import { getVideoId } from "./utils";
 
-  const imgSrc = await (async () => {
-    const imgBaseUrl = `https://img.youtube.com/vi/${videoId}/`;
+async function injectThumbnail(videoId: string) {
+  async function getAvailableThumbnail(videoId: string) {
+    const baseUrl = `https://img.youtube.com/vi/${videoId}/`;
     const imgFilenames = ["maxresdefault.jpg", "mqdefault.jpg"];
 
     for (const filename of imgFilenames) {
-      const imgUrl = `${imgBaseUrl}${filename}`;
+      const imgUrl = `${baseUrl}${filename}`;
       const res = await fetch(imgUrl);
       if (res.ok) {
         return imgUrl;
       }
     }
     return null;
-  })();
+  }
+  function removeThumbnails() {
+    document.querySelectorAll(".ytv-container").forEach((el) => el.remove());
+  }
+
+  const imgSrc = await getAvailableThumbnail(videoId);
 
   if (!imgSrc) {
     removeThumbnails();
@@ -27,9 +30,9 @@ async function injectThumbnail(videoId: string) {
     <a href="${imgSrc}" class="ytv-link" target="_blank">
       <img src="${imgSrc}" alt="Thumbnail image" class="ytv-img" />
     </a>
-  </div>
-  `;
+  </div>`;
 
+  const intervalDuration = 100;
   const attemptLimit = 1000;
   let attemptCount = 0;
 
@@ -46,25 +49,11 @@ async function injectThumbnail(videoId: string) {
     removeThumbnails();
     target.insertAdjacentHTML("afterbegin", el);
     clearInterval(interval);
-  }, 100);
+  }, intervalDuration);
 }
 
-function parseVideoUrl(url: string) {
-  const urlObj = new URL(url);
-  const videoId = urlObj.searchParams.get("v") || "";
-
-  if (
-    !url.startsWith("https://www.youtube.com/watch") ||
-    videoId.length !== 11
-  ) {
-    return null;
-  }
-
-  return videoId;
-}
-
-function execute(url: string, tabId: number) {
-  const videoId = parseVideoUrl(url);
+function perform(url: string, tabId: number) {
+  const videoId = getVideoId(url);
 
   if (!videoId) return;
 
@@ -77,6 +66,6 @@ function execute(url: string, tabId: number) {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete" && tab.url) {
-    execute(tab.url, tabId);
+    perform(tab.url, tabId);
   }
 });
