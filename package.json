@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "turbo dev",
-    "build": "turbo build"
+    "build": "turbo build",
+    "zip": "rm -f ytv.zip && zip ytv.zip dist -r -x '**/.DS_Store'"
   },
   "keywords": [],
   "author": "",
