@@ -1,18 +1,22 @@
 {
   "name": "youtube-thumbnail-viewer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "manifest.json description",
+  "private": true,
+  "version": "0.0.4",
+  "type": "module",
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "zip": "rm -f ytv.zip && zip ytv.zip dist -r -x '**/.DS_Store'"
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.7.0",
   "devDependencies": {
-    "turbo": "^2.5.0"
+    "eslint": "^9.33.0",
+    "typescript": "^5.8.3",
+    "wxt": "^0.20.6"
   }
 }
