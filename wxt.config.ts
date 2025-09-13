@@ -11,7 +11,6 @@ export default defineConfig({
     startUrls: ["https://www.youtube.com/watch?v=jNQXAC9IVRw"],
   },
   manifest: {
-    version: "0.0.4",
     name: "__MSG_extName__",
     short_name: "__MSG_extShortName__",
     description: "__MSG_extDescription__",
