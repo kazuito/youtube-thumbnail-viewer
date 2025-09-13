@@ -3,6 +3,7 @@ yt-thumbnail-preview {
   margin: 4px 0 0 12px;
   position: relative;
   z-index: 20;
+  display: block !important;
 
   & .ytv-link {
     display: flex;
