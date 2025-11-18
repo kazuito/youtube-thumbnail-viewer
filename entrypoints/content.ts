@@ -1,7 +1,7 @@
 import "../assets/styles.css";
 import { defineContentScript } from "wxt/utils/define-content-script";
 import { MatchPattern } from "wxt/utils/match-patterns";
-import { updateThumbnail } from "@/lib/inject";
+import { clean, updateThumbnail } from "@/lib/inject";
 
 const watchPattern = new MatchPattern("*://www.youtube.com/watch*");
 
@@ -16,9 +16,12 @@ export default defineContentScript({
 
     // listen for client-side URL changes
     ctx.addEventListener(window, "wxt:locationchange", ({ newUrl }) => {
-      if (watchPattern.includes(newUrl)) {
-        updateThumbnail(ctx);
+      if (!watchPattern.includes(newUrl)) {
+        clean();
+        return;
       }
+
+      updateThumbnail(ctx);
     });
   },
 });

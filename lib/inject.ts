@@ -91,7 +91,7 @@ function makeImageElement(imageUrl: string): HTMLImageElement {
 /**
  * Remove existing injected containers
  */
-function clean() {
+export function clean() {
   document.querySelectorAll(containerTagName).forEach((el) => {
     el.remove();
   });
