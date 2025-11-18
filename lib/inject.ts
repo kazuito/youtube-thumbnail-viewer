@@ -1,7 +1,7 @@
-import { ContentScriptContext } from "wxt/utils/content-script-context";
-import { getAvailableThumbnailUrl, getVideoId } from "./youtube";
+import type { ContentScriptContext } from "wxt/utils/content-script-context";
 import { createIntegratedUi } from "wxt/utils/content-script-ui/integrated";
 import { sleep } from "./utils";
+import { getAvailableThumbnailUrl, getVideoId } from "./youtube";
 
 const FADEOUT_DURATION = 240;
 
@@ -92,5 +92,7 @@ function makeImageElement(imageUrl: string): HTMLImageElement {
  * Remove existing injected containers
  */
 function clean() {
-  document.querySelectorAll(containerTagName).forEach((el) => el.remove());
+  document.querySelectorAll(containerTagName).forEach((el) => {
+    el.remove();
+  });
 }

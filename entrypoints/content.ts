@@ -1,6 +1,6 @@
 import "../assets/styles.css";
-import { MatchPattern } from "wxt/utils/match-patterns";
 import { defineContentScript } from "wxt/utils/define-content-script";
+import { MatchPattern } from "wxt/utils/match-patterns";
 import { updateThumbnail } from "@/lib/inject";
 
 const watchPattern = new MatchPattern("*://www.youtube.com/watch*");
@@ -8,7 +8,7 @@ const watchPattern = new MatchPattern("*://www.youtube.com/watch*");
 export default defineContentScript({
   matches: ["*://www.youtube.com/*"],
   main: (ctx) => {
-    // initial image injection
+    // initial injection
     const url = new URL(window.location.href);
     if (watchPattern.includes(url)) {
       updateThumbnail(ctx);
