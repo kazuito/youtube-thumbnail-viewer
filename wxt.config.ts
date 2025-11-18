@@ -2,13 +2,10 @@ import { defineConfig } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  imports: {
-    eslintrc: {
-      enabled: 9,
-    },
-  },
+  imports: false,
   webExt: {
-    startUrls: ["https://www.youtube.com/watch?v=jNQXAC9IVRw"],
+    startUrls: ["https://www.youtube.com/watch?v=LmZD-TU96q4"],
+    chromiumArgs: ["--user-data-dir=./.wxt/chrome-data"],
   },
   manifest: {
     name: "__MSG_extName__",

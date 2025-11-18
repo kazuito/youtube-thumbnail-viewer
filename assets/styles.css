@@ -1,4 +1,4 @@
-yt-thumbnail-preview {
+ytv-thumbnail-preview {
   float: right;
   margin: 4px 0 0 12px;
   position: relative;
@@ -32,13 +32,13 @@ yt-thumbnail-preview {
       }
 
       &[data-hidden="true"] {
-        animation: ytv-fade-out 0.24s ease-in forwards !important;
+        animation: ytv-fadeout 240ms ease-in forwards !important;
       }
     }
   }
 }
 
-@keyframes ytv-fade-out {
+@keyframes ytv-fadeout {
   from {
     opacity: 100%;
     filter: blur(0px);
