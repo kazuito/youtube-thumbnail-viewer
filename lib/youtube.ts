@@ -9,7 +9,7 @@ export async function getAvailableThumbnailUrl(videoId: string) {
 
   for (const filename of filenames) {
     const url = imageUrl(filename);
-    const res = await fetch(url);
+    const res = await fetch(url, { method: "HEAD" });
 
     if (res.ok) {
       return url;
