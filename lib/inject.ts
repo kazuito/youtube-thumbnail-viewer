@@ -6,14 +6,16 @@ import { getAvailableThumbnailUrl, getVideoId } from "./youtube";
 const FADEOUT_DURATION = 240;
 
 const containerTagName = "ytv-thumbnail-preview";
+
 const classNames = {
   link: "ytv-link",
   img: "ytv-img",
-};
+} as const;
+
 const selectors = {
   link: `${containerTagName} .${classNames.link}`,
   img: `${containerTagName} .${classNames.img}`,
-};
+} as const;
 
 export async function updateThumbnail(ctx: ContentScriptContext) {
   const link = document.querySelector(selectors.link);
@@ -31,7 +33,7 @@ export async function updateThumbnail(ctx: ContentScriptContext) {
 
   const [imageUrl] = await Promise.all([
     await getAvailableThumbnailUrl(videoId),
-    sleep(FADEOUT_DURATION), // wait for hide animation of previous image
+    sleep(FADEOUT_DURATION), // wait for fadeout animation of previous image
   ]);
 
   if (!imageUrl) {
