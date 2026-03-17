@@ -2,10 +2,11 @@ import {
   ChromeIcon,
   ExternalLink,
   Globe,
-  Image,
+  Image as ImageIcon,
   MousePointerClick,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FeatureCard } from "./_components/feature-card";
@@ -14,9 +15,32 @@ import { StepItem } from "./_components/step-item";
 const CHROME_STORE_URL =
   "https://chromewebstore.google.com/detail/youtube-thumbnail-viewer/gepipnmhdeemppokommnippgeeagabio";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "YouTube Thumbnail Viewer",
+  description:
+    "A lightweight Chrome extension that displays a video's thumbnail directly in the description area on YouTube — without leaving the page.",
+  applicationCategory: "BrowserApplication",
+  operatingSystem: "Chrome",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  url: CHROME_STORE_URL,
+  author: {
+    "@type": "Person",
+    name: "kazuito",
+    url: "https://github.com/kazuito",
+  },
+  softwareVersion: "0.0.6",
+  inLanguage: ["en", "ar", "de", "es", "fr", "hi", "it", "ja", "ko"],
+};
+
 const features = [
   {
-    icon: Image,
+    icon: ImageIcon,
     title: "Best Quality, Automatically",
     description:
       "Always fetches the highest available resolution — maxres (1280×720) first, falling back to medium quality.",
@@ -62,11 +86,22 @@ const steps = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <header className="sticky top-0 bg-linear-to-b from-background to-transparent">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="font-semibold text-sm">
-            YouTube Thumbnail Viewer
+          <Link href="/" className="font-semibold gap-2.5 flex items-center">
+            <Image
+              src="/icon.png"
+              width={32}
+              height={32}
+              alt="Logo of YouTube Thumbnail Viewer"
+            />
+            <span className="sr-only">YouTube</span> Thumbnail Viewer
           </Link>
           <Button asChild>
             <a
