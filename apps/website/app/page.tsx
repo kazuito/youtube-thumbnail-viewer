@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import chromePackage from "../../chrome/package.json";
 import { FeatureCard } from "./_components/feature-card";
 import { StepItem } from "./_components/step-item";
 
@@ -18,9 +20,8 @@ const CHROME_STORE_URL =
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "YouTube Thumbnail Viewer",
-  description:
-    "A lightweight Chrome extension that displays a video's thumbnail directly in the description area on YouTube — without leaving the page.",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
   applicationCategory: "BrowserApplication",
   operatingSystem: "Chrome",
   offers: {
@@ -31,11 +32,16 @@ const jsonLd = {
   url: CHROME_STORE_URL,
   author: {
     "@type": "Person",
-    name: "kazuito",
+    name: "Kazuma Ito",
     url: "https://github.com/kazuito",
   },
-  softwareVersion: "0.0.6",
+  softwareVersion: chromePackage.version,
   inLanguage: ["en", "ar", "de", "es", "fr", "hi", "it", "ja", "ko"],
+  featureList: [
+    "View YouTube thumbnails inline",
+    "Automatic highest resolution selection",
+    "9 languages supported",
+  ],
 };
 
 const features = [

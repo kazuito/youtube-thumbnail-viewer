@@ -1,5 +1,6 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ytthumbnailviewer.com";
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://youtubethumbnailviewer.vercel.app/";
 
 export const SITE_NAME = "YouTube Thumbnail Viewer";
 
