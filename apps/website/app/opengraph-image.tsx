@@ -6,7 +6,11 @@ export const alt = SITE_NAME;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function OpenGraphImage() {
+  const iconData = await fetch(
+    new URL("../public/icon.png", import.meta.url),
+  ).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     <div
       style={{
@@ -21,31 +25,14 @@ export default function Image() {
         padding: "80px",
       }}
     >
-      {/* YouTube-style icon */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "88px",
-          height: "88px",
-          borderRadius: "20px",
-          background: "#ff0000",
-          marginBottom: "40px",
-          boxShadow: "0 0 40px rgba(255,0,0,0.3)",
-        }}
-      >
-        <div
-          style={{
-            width: 0,
-            height: 0,
-            borderTop: "18px solid transparent",
-            borderBottom: "18px solid transparent",
-            borderLeft: "32px solid white",
-            marginLeft: "8px",
-          }}
-        />
-      </div>
+      {/** biome-ignore lint/performance/noImgElement: We can't use Next.js Image component here */}
+      <img
+        src={iconData as unknown as string}
+        width={120}
+        height={120}
+        style={{ marginBottom: "40px", borderRadius: "20px" }}
+        alt=""
+      />
 
       <h1
         style={{
@@ -83,7 +70,7 @@ export default function Image() {
           background: "rgba(255,255,255,0.08)",
           borderRadius: "999px",
           border: "1px solid rgba(255,255,255,0.12)",
-          color: "#78716c",
+          color: "#eee",
           fontSize: "20px",
         }}
       >
