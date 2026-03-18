@@ -3,6 +3,7 @@
 import {
   ArrowRightToLineIcon,
   ChevronDownIcon,
+  ClipboardIcon,
   CopyIcon,
   CornerDownLeftIcon,
   XIcon,
@@ -62,8 +63,8 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
         variant="secondary"
         size="lg"
       >
+        <ClipboardIcon />
         Paste
-        <ArrowRightToLineIcon />
       </Button>
       <InputGroup className="h-9">
         <InputGroupInput
