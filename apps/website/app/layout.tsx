@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { env } from "@/lib/env";
-import {
-  CHROME_STORE_URL,
-  SITE_DESCRIPTION,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { ChromeIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "sonner";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -87,76 +80,9 @@ export default function RootLayout({
           <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
         )}
         <NuqsAdapter>
-          <header className="z-10 sticky top-0 bg-background/95 backdrop-blur-md">
-            <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-              <Link
-                href="/"
-                className="font-semibold gap-2.5 flex items-center"
-              >
-                <Image
-                  src="/icon.png"
-                  width={32}
-                  height={32}
-                  alt="Logo of YouTube Thumbnail Viewer"
-                />
-                <div className="max-sm:hidden">
-                  <span className="sr-only">YouTube</span> Thumbnail Viewer
-                </div>
-              </Link>
-              <nav className="flex items-center">
-                <Link
-                  href="/"
-                  className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors"
-                >
-                  Viewer
-                </Link>
-                <Link
-                  href="/chrome"
-                  className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors"
-                >
-                  Chrome Extension
-                </Link>
-              </nav>
-              <div className="max-sm:hidden">
-                <Button asChild>
-                  <a
-                    href={CHROME_STORE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ChromeIcon className="size-4" />
-                    Add to Chrome
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </header>
+          <Header />
           {children}
-          <footer className="border-t border-border mt-8">
-            <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-              <span>
-                © {new Date().getFullYear()} {SITE_NAME}
-              </span>
-              <div className="flex items-center gap-6">
-                <a
-                  href="https://github.com/kazuito/youtube-thumbnail-viewer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={CHROME_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  Chrome Web Store
-                </a>
-              </div>
-            </div>
-          </footer>
+          <Footer />
           <Toaster
             toastOptions={{
               classNames: {
