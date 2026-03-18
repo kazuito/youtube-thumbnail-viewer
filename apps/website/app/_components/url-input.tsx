@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowLeftIcon,
   ArrowRightToLineIcon,
   ChevronDownIcon,
   ClipboardIcon,
@@ -55,6 +56,11 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
 
   return (
     <div className="flex gap-2">
+      {videoId && (
+        <Button variant="outline" size="icon" onClick={() => onChange("")}>
+          <ArrowLeftIcon />
+        </Button>
+      )}
       <Button
         onClick={async () => {
           const text = await navigator.clipboard.readText();
