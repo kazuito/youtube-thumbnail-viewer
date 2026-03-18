@@ -88,6 +88,7 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
           placeholder="YouTube URL or video ID"
           aria-invalid={invalid}
           className="text-base!"
+          autoFocus
         />
         <InputGroupAddon align="inline-end">
           <InputGroupButton size="icon-xs" onClick={handleClear}>

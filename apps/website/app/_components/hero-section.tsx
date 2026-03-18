@@ -4,7 +4,7 @@ export function HeroSection() {
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-balance">
         YouTube Thumbnail <span className="text-muted-foreground">Viewer</span>
       </h1>
-      <p className="max-w-lg text-muted-foreground text-lg leading-relaxed text-balance">
+      <p className="max-w-lg text-muted-foreground text-lg leading-snug text-balance">
         Paste any YouTube URL or video ID to instantly view and download
         thumbnails in every available resolution.
       </p>

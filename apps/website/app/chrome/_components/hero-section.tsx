@@ -12,15 +12,23 @@ export function HeroSection({
   return (
     <section
       className={cn(
-        "py-20 flex flex-col items-center text-center gap-6 bg-background",
+        "pb-20 pt-16 flex flex-col items-center text-center gap-6 bg-background",
         className,
       )}
       {...props}
     >
-      <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
-        See the thumbnail,{" "}
-        <span className="text-muted-foreground">without leaving YouTube</span>
-      </h1>
+      <div className="flex flex-col items-center">
+        <Link
+          href="/chrome"
+          className="rounded-full hover:scale-120 text-muted-foreground transition flex active:scale-100 hover:rotate-4 active:rotate-8 mask-b-from-30% mask-b-to-90%"
+        >
+          <ChromeIcon className="size-32 rotate-full" />
+        </Link>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
+          See the thumbnail,{" "}
+          <span className="text-muted-foreground">without leaving YouTube</span>
+        </h1>
+      </div>
       <p className="max-w-xl text-muted-foreground text-lg leading-snug text-balance">
         A lightweight Chrome extension that displays a video's thumbnail
         directly in the description area on YouTube.
