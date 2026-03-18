@@ -63,7 +63,15 @@ function ThumbnailCard({
 
   const handleCopyImage = async () => {
     const blob = await fetchImageBlob(url);
-    await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+    const bitmap = await createImageBitmap(blob);
+    const canvas = document.createElement("canvas");
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    canvas.getContext("2d")?.drawImage(bitmap, 0, 0);
+    const pngBlob = await new Promise<Blob>((resolve, reject) =>
+      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), "image/png"),
+    );
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
   };
 
   const handleCopyUrl = async () => {
@@ -106,7 +114,7 @@ function ThumbnailCard({
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8"
+                className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8 data-open:opacity-100"
               >
                 <CopyIcon />
                 <span className="sm:sr-only">Copy</span>
