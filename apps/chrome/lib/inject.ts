@@ -5,14 +5,14 @@ import { getAvailableThumbnailUrl } from "./youtube";
 
 const FADEOUT_DURATION = 240;
 
-const containerTagName = "ytv-thumbnail-preview";
+export const containerTagName = "ytv-thumbnail-preview";
 
-const classNames = {
+export const classNames = {
   anchor: "ytv-anchor",
   image: "ytv-image",
 } as const;
 
-const selectors = {
+export const selectors = {
   anchor: `${containerTagName} .${classNames.anchor}`,
   image: `${containerTagName} .${classNames.image}`,
 } as const;
