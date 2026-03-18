@@ -54,6 +54,36 @@ const faqs = [
     answer:
       "No. The extension does not collect, store, or transmit any personal data. It only reads the video ID from the current YouTube page URL to fetch the thumbnail.",
   },
+  {
+    question: "Does it work on YouTube Shorts?",
+    answer:
+      "No. YouTube Shorts use a different URL format (youtube.com/shorts) and are not currently supported. The extension only activates on standard YouTube watch pages.",
+  },
+  {
+    question: "What permissions does the extension require?",
+    answer:
+      "The extension only requests access to youtube.com pages. It does not require access to your browsing history, bookmarks, or any other websites.",
+  },
+  {
+    question: "Will it slow down YouTube?",
+    answer:
+      "No. The extension is lightweight and only fetches a single thumbnail image when you open a video page. It has no impact on YouTube's playback or overall performance.",
+  },
+  {
+    question: "What if the thumbnail doesn't appear?",
+    answer:
+      "Try refreshing the YouTube page. If the issue persists, the video may not have a publicly accessible thumbnail. You can also report the issue on the GitHub repository.",
+  },
+  {
+    question: "Is the source code available?",
+    answer:
+      "Yes. YouTube Thumbnail Viewer is open source. You can view, audit, and contribute to the code on GitHub at github.com/kazuito/youtube-thumbnail-viewer.",
+  },
+  {
+    question: "Does it work on mobile?",
+    answer:
+      "No. Chrome extensions are not supported on mobile browsers. The extension works on desktop versions of Chrome and other Chromium-based browsers only.",
+  },
 ];
 
 const jsonLd = {
