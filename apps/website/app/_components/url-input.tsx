@@ -1,10 +1,9 @@
 "use client";
 
-import { ArrowLeftToLine, ClipboardIcon, XIcon } from "lucide-react";
+import { ArrowLeftToLine, XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   InputGroup,
   InputGroupAddon,
@@ -39,16 +38,6 @@ function parseVideoId(value: string): string | null {
   return null;
 }
 
-const EXAMPLES = [
-  { id: "fLexgOxsZu0", title: "The Lazy Song", author: "Bruno Mars" },
-  {
-    id: "0e3GPea1Tyg",
-    title: "$456,000 Squid Game In Real Life!",
-    author: "MrBeast",
-  },
-  { id: "rokGy0huYEA", title: "2020 — Year in Search", author: "Google" },
-] as const;
-
 interface UrlInputProps {
   initialValue: string | null;
   onVideoId: (id: string | null) => unknown;
@@ -56,7 +45,9 @@ interface UrlInputProps {
 
 export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
   const [value, setValue] = useState(initialValue ?? "");
-  const [_, setUrlVid] = useQueryState("vid");
+  const [_, setUrlVid] = useQueryState("vid", {
+    history: "push",
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,58 +65,29 @@ export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex gap-2">
-        <InputGroup>
-          <InputGroupInput
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="YouTube URL or video ID"
-            aria-invalid={invalid}
-          />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton size="icon-xs" onClick={handleClear}>
-              <XIcon />
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
-        <Button
-          onClick={async () => {
-            const text = await navigator.clipboard.readText();
-            setValue(text);
-          }}
-        >
-          <ArrowLeftToLine />
-          Paste
-        </Button>
-      </div>
-      {!value && (
-        <div className="flex flex-col gap-2">
-          {EXAMPLES.map((ex) => (
-            <button
-              key={ex.id}
-              type="button"
-              onClick={() => setValue(ex.id)}
-              className="flex items-center gap-3 rounded-xl border border-border p-2 text-left hover:bg-muted/50 transition-colors"
-            >
-              {/* biome-ignore lint/performance/noImgElement: external dynamic URL */}
-              <img
-                src={`https://img.youtube.com/vi/${ex.id}/mqdefault.jpg`}
-                alt={ex.title}
-                className="h-14 aspect-video rounded-md object-cover shrink-0"
-              />
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <span className="text-sm font-medium text-foreground truncate">
-                  {ex.title}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  {ex.author}
-                </span>
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
+    <div className="flex gap-2">
+      <InputGroup>
+        <InputGroupInput
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="YouTube URL or video ID"
+          aria-invalid={invalid}
+        />
+        <InputGroupAddon align="inline-end">
+          <InputGroupButton size="icon-xs" onClick={handleClear}>
+            <XIcon />
+          </InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
+      <Button
+        onClick={async () => {
+          const text = await navigator.clipboard.readText();
+          setValue(text);
+        }}
+      >
+        <ArrowLeftToLine />
+        Paste
+      </Button>
     </div>
   );
 }
