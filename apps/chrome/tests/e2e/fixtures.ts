@@ -2,7 +2,8 @@ import { type BrowserContext, test as base, chromium } from "@playwright/test";
 import { extensionPath } from "./playwright.config";
 
 export const test = base.extend<{ context: BrowserContext }>({
-  context: async (_, use) => {
+  // biome-ignore lint/correctness/noEmptyPattern: Playwright fixture signature requires destructuring
+  context: async ({}, use) => {
     const context = await chromium.launchPersistentContext("", {
       headless: false,
       args: [

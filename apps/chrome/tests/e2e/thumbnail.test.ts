@@ -1,4 +1,4 @@
-import { containerTagName } from "@/lib/inject";
+import { classNames, containerTagName } from "@/lib/inject";
 import { expect, test } from "./fixtures";
 
 const WATCH_URL = "https://www.youtube.com/watch?v=LmZD-TU96q4";
@@ -13,14 +13,14 @@ test.describe("YouTube Thumbnail Viewer Extension", () => {
     const container = page.locator(containerTagName);
     await expect(container).toBeVisible();
 
-    // const anchor = container.locator(selectors.anchor);
-    // await expect(anchor).toBeVisible();
+    const anchor = container.locator(`a.${classNames.anchor}`);
+    await expect(anchor).toBeVisible();
 
-    // const href = await anchor.getAttribute("href");
-    // expect(href).toContain("img.youtube.com");
+    const href = await anchor.getAttribute("href");
+    expect(href).toContain("img.youtube.com");
 
-    // const image = container.locator(selectors.image);
-    // await expect(image).toBeAttached();
+    const image = container.locator(`img.${classNames.image}`);
+    await expect(image).toBeAttached();
   });
 
   test("does not inject on non-watch page", async ({ page }) => {
