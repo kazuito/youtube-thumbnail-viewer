@@ -32,7 +32,7 @@ export function HeroSection() {
           </span>
         </div>
         <span className="select-none">·</span>
-        <span>1,000+ users</span>
+        <span>{env.CHROME_STORE_USER_COUNT}+ users</span>
       </div>
       <div className="flex items-center gap-3">
         <Button asChild size="lg" className="gap-2 px-6">
