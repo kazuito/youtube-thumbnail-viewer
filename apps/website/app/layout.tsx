@@ -157,7 +157,13 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              classNames: {
+                toast: "rounded-lg!",
+              },
+            }}
+          />
         </NuqsAdapter>
       </body>
     </html>
