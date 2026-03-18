@@ -1,8 +1,6 @@
 "use client";
 
-import { CornerDownLeftIcon } from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 
 function parseVideoId(value: string): string | null {
@@ -33,39 +31,29 @@ function parseVideoId(value: string): string | null {
 }
 
 interface UrlInputProps {
-  onVideoId: (id: string) => void;
+  initialValue: string | null;
+  onVideoId: (id: string | null) => unknown;
 }
 
-export function UrlInput({ onVideoId }: UrlInputProps) {
-  const [value, setValue] = useState("");
-  const [error, setError] = useState(false);
+export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
+  const [value, setValue] = useState(initialValue ?? "");
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const id = parseVideoId(value);
-    if (!id) {
-      setError(true);
-      return;
-    }
-    setError(false);
-    onVideoId(id);
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onVideoId(parseVideoId(value));
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [value, onVideoId]);
+
+  const hasInput = value.trim().length > 0;
+  const invalid = hasInput && !parseVideoId(value);
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <Input
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-          setError(false);
-        }}
-        placeholder="YouTube URL or video ID"
-        aria-invalid={error}
-      />
-      <Button type="submit" className="shrink-0">
-        View
-        <CornerDownLeftIcon className="opacity-80" />
-      </Button>
-    </form>
+    <Input
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="YouTube URL or video ID"
+      aria-invalid={invalid}
+    />
   );
 }
