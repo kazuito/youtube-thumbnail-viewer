@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { env } from "@/lib/env";
 import { CHROME_STORE_URL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import chromePackage from "../../../chrome/package.json";
@@ -43,6 +44,10 @@ const jsonLd = {
     "Automatic highest resolution selection",
     "9 languages supported",
   ],
+};
+
+export const metadata: Metadata = {
+  title: "Chrome Extension",
 };
 
 export default function Home() {

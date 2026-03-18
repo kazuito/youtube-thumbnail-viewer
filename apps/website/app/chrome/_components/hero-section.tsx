@@ -9,7 +9,7 @@ export function HeroSection() {
     <section className="py-20 flex flex-col items-center text-center gap-6">
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-balance">
         See the thumbnail,{" "}
-        <span className="text-muted-foreground">without leaving the page</span>
+        <span className="text-muted-foreground">without leaving YouTube</span>
       </h1>
       <p className="max-w-xl text-muted-foreground text-lg leading-relaxed text-balance">
         A lightweight Chrome extension that displays a video's thumbnail

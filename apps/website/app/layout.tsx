@@ -98,18 +98,36 @@ export default function RootLayout({
                   height={32}
                   alt="Logo of YouTube Thumbnail Viewer"
                 />
-                <span className="sr-only">YouTube</span> Thumbnail Viewer
+                <div className="max-sm:hidden">
+                  <span className="sr-only">YouTube</span> Thumbnail Viewer
+                </div>
               </Link>
-              <Button asChild>
-                <a
-                  href={CHROME_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <nav className="flex items-center">
+                <Link
+                  href="/"
+                  className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors"
                 >
-                  <ChromeIcon className="size-4" />
-                  Add to Chrome
-                </a>
-              </Button>
+                  Viewer
+                </Link>
+                <Link
+                  href="/chrome"
+                  className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors"
+                >
+                  Chrome Extension
+                </Link>
+              </nav>
+              <div className="max-sm:hidden">
+                <Button asChild>
+                  <a
+                    href={CHROME_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ChromeIcon className="size-4" />
+                    Add to Chrome
+                  </a>
+                </Button>
+              </div>
             </div>
           </header>
           {children}
