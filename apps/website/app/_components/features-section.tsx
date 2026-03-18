@@ -1,4 +1,9 @@
-import { Globe, Image as ImageIcon, MousePointerClick, Zap } from "lucide-react";
+import {
+  Globe,
+  Image as ImageIcon,
+  MousePointerClick,
+  Zap,
+} from "lucide-react";
 import { FeatureCard } from "./feature-card";
 
 const features = [

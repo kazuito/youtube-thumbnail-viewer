@@ -9,6 +9,7 @@ import { FaqSection, faqJsonLd } from "./_components/faq-section";
 import { FeaturesSection } from "./_components/features-section";
 import { HeroSection } from "./_components/hero-section";
 import { HowItWorksSection } from "./_components/how-it-works-section";
+import { ReviewsSection } from "./_components/reviews-section";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -89,6 +90,7 @@ export default function Home() {
         <HeroSection />
         <FeaturesSection />
         <HowItWorksSection />
+        <ReviewsSection />
         <FaqSection />
       </main>
     </div>

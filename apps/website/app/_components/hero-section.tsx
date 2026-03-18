@@ -16,7 +16,11 @@ export function HeroSection() {
       </p>
       <div className="flex items-center gap-3">
         <Button asChild size="lg" className="gap-2 px-6">
-          <Link href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer">
+          <Link
+            href={CHROME_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ChromeIcon />
             Add to Chrome<span className="max-sm:hidden"> — it's free</span>
           </Link>
