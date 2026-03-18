@@ -1,13 +1,21 @@
 {
-  "name": "youtube-thumbnail-viewer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.32.1"
+	"name": "youtube-thumbnail-viewer",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"lint": "pnpm -r lint",
+		"format": "pnpm -r format",
+		"typecheck": "pnpm -r typecheck",
+		"check": "pnpm -r check",
+		"prepare": "husky"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.32.1",
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.8",
+		"husky": "^9.1.7"
+	}
 }
