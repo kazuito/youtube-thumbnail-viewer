@@ -59,16 +59,18 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
           onChange(text);
         }}
         variant="secondary"
+        size="lg"
       >
         Paste
         <ArrowRightToLineIcon />
       </Button>
-      <InputGroup>
+      <InputGroup className="h-9">
         <InputGroupInput
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="YouTube URL or video ID"
           aria-invalid={invalid}
+          className="text-base!"
         />
         <InputGroupAddon align="inline-end">
           <InputGroupButton size="icon-xs" onClick={handleClear}>
@@ -76,13 +78,13 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
-      <Button>
+      <Button size="lg" onClick={() => onChange(value)}>
         Submit
         <CornerDownLeftIcon className="opacity-80" />
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline">
+          <Button variant="outline" size="lg">
             Copy
             <ChevronDownIcon />
           </Button>

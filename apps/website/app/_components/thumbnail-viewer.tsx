@@ -31,12 +31,12 @@ export function ThumbnailViewer() {
 
   useEffect(() => {
     if (!videoId) return;
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 220, behavior: "smooth" });
   }, [videoId]);
 
   return (
     <div className="flex flex-col gap-8">
-      {!value && <HeroSection />}
+      <HeroSection />
       <UrlInput
         value={value}
         onChange={(value) => {
