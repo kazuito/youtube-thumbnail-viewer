@@ -115,7 +115,7 @@ export default function Home() {
             href="https://img.youtube.com/vi/cRZOUcpiOxY/maxresdefault.jpg"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute w-[28.96%] rounded-xs top-[38.6%] left-[35.42%] hover:brightness-105 active:brightness-100"
+            className="absolute w-[28.96%] rounded-xs top-[38.6%] left-[35.42%] hover:brightness-110 transition active:brightness-100"
           >
             <Image
               src="/ext-demo-thumbnail.png"

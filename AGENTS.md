@@ -51,13 +51,17 @@ Injects a thumbnail image into the YouTube watch page (`/watch?v=...`) descripti
 
 #### Layout (`app/layout.tsx`)
 - Root layout shared across all routes
-- Contains the sticky header (logo + "Add to Chrome" button) and footer
+- Renders `<Header>` and `<Footer>` components from `app/_components/`
 - Wraps children in `NuqsAdapter` (required for `useQueryState`)
-- Metadata, OpenGraph, Twitter card, and Google Analytics
+- Global metadata, OpenGraph template, Twitter card, and Google Analytics
 
-#### Thumbnail viewer (`/`) — `app/_components/`
+#### Shared components (`app/_components/`)
+- `header.tsx` — sticky site header: logo, nav links (Viewer, Chrome Extension), "Add to Chrome" button
+- `footer.tsx` — copyright, GitHub and Chrome Web Store links
+- `hero-section.tsx` — hero used on `/` (also imported on the `/chrome` page)
 - `thumbnail-viewer.tsx` — client component; owns `?vid=` query state via `useQueryState("vid")`
 - `url-input.tsx` — text input accepting YouTube URL or bare video ID; parses on change (300 ms debounce) and updates `?vid=`; Paste button reads from clipboard; shows example suggestion cards when empty
+- `example-videos.tsx` — example video suggestion cards rendered inside `url-input.tsx` when the input is empty; sourced from `lib/examples.ts`
 - `video-embed.tsx` — YouTube `<iframe>` embed (16:9)
 - `thumbnail-gallery.tsx` — grid of all available resolutions (`maxresdefault` → `default`, plus frame thumbnails 0–3); each card hides itself via `onError` if the image doesn't exist; clicking opens full-size in a new tab
 
@@ -65,8 +69,16 @@ Injects a thumbnail image into the YouTube watch page (`/watch?v=...`) descripti
 - `hero-section.tsx`, `features-section.tsx`, `how-it-works-section.tsx`, `reviews-section.tsx`, `faq-section.tsx`
 - JSON-LD structured data (SoftwareApplication + FAQ) injected via `<script>` in `chrome/page.tsx`
 
-#### SEO utilities (`app/`)
-- `opengraph-image.tsx`, `sitemap.ts`, `robots.ts`
+#### SEO
+- Per-page `metadata` exports with canonical URLs, OpenGraph, and Twitter Card on both `/` and `/chrome`
+- `opengraph-image.tsx` — generates the shared OG image (1200×630) at build time using `fs.readFile`
+- `sitemap.ts` — covers `/` (priority 1.0) and `/chrome` (priority 0.8)
+- `robots.ts` — allows all crawlers, references `/sitemap.xml`
+
+#### Data (`lib/`)
+- `site.ts` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, `CHROME_STORE_URL`
+- `env.ts` — type-safe env vars (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `CHROME_STORE_RATING_VALUE`, `CHROME_STORE_RATING_COUNT`)
+- `examples.ts` — list of example videos (`id`, `title`, `author`) shown in the URL input suggestions
 
 ## Workspace
 
