@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftToLine, XIcon } from "lucide-react";
+import { ArrowRightToLineIcon, CornerDownLeft, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   InputGroup,
@@ -25,6 +25,16 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
 
   return (
     <div className="flex gap-2">
+      <Button
+        onClick={async () => {
+          const text = await navigator.clipboard.readText();
+          onChange(text);
+        }}
+        variant="secondary"
+      >
+        Paste
+        <ArrowRightToLineIcon />
+      </Button>
       <InputGroup>
         <InputGroupInput
           value={value}
@@ -38,14 +48,9 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
-      <Button
-        onClick={async () => {
-          const text = await navigator.clipboard.readText();
-          onChange(text);
-        }}
-      >
-        <ArrowLeftToLine />
-        Paste
+      <Button>
+        Submit
+        <CornerDownLeft />
       </Button>
     </div>
   );
