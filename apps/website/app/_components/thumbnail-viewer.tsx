@@ -13,8 +13,8 @@ export function ThumbnailViewer() {
       <UrlInput initialValue={videoId} onVideoId={setVideoId} />
       {videoId && (
         <>
-          <VideoEmbed videoId={videoId} />
           <ThumbnailGallery videoId={videoId} />
+          <VideoEmbed videoId={videoId} />
         </>
       )}
     </div>
