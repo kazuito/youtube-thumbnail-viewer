@@ -1,9 +1,16 @@
 "use client";
 
-import { ArrowLeftToLine, ClipboardIcon } from "lucide-react";
+import { ArrowLeftToLine, ClipboardIcon, XIcon } from "lucide-react";
+import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 function parseVideoId(value: string): string | null {
   const trimmed = value.trim();
@@ -49,6 +56,7 @@ interface UrlInputProps {
 
 export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
   const [value, setValue] = useState(initialValue ?? "");
+  const [_, setUrlVid] = useQueryState("vid");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,15 +68,27 @@ export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
   const hasInput = value.trim().length > 0;
   const invalid = hasInput && !parseVideoId(value);
 
+  const handleClear = () => {
+    setValue("");
+    setUrlVid(null);
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <div className="flex gap-2">
-        <Input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="YouTube URL or video ID"
-          aria-invalid={invalid}
-        />
+        <InputGroup>
+          <InputGroupInput
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="YouTube URL or video ID"
+            aria-invalid={invalid}
+          />
+          <InputGroupAddon align="inline-end">
+            <InputGroupButton size="icon-xs" onClick={handleClear}>
+              <XIcon />
+            </InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
         <Button
           onClick={async () => {
             const text = await navigator.clipboard.readText();
