@@ -3,10 +3,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { env } from "@/lib/env";
 import { CHROME_STORE_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
-export function HeroSection() {
+export function HeroSection({ className, ...props }: React.ComponentProps<"section">) {
   return (
-    <section className="py-20 flex flex-col items-center text-center gap-6">
+    <section
+      className={cn(
+        "py-20 flex flex-col items-center text-center gap-6 bg-background",
+        className,
+      )}
+      {...props}
+    >
       <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
         See the thumbnail,{" "}
         <span className="text-muted-foreground">without leaving YouTube</span>
