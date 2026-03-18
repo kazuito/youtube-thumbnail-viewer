@@ -9,6 +9,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import chromePackage from "../../chrome/package.json";
 import { FeatureCard } from "./_components/feature-card";
@@ -16,6 +22,39 @@ import { StepItem } from "./_components/step-item";
 
 const CHROME_STORE_URL =
   "https://chromewebstore.google.com/detail/youtube-thumbnail-viewer/gepipnmhdeemppokommnippgeeagabio";
+
+const faqs = [
+  {
+    question: "Is YouTube Thumbnail Viewer free?",
+    answer:
+      "Yes, it's completely free. There are no ads, no subscriptions, and no hidden costs.",
+  },
+  {
+    question: "Which browsers does it support?",
+    answer:
+      "YouTube Thumbnail Viewer is a Chrome extension and works on Google Chrome and other Chromium-based browsers such as Microsoft Edge and Brave.",
+  },
+  {
+    question: "Does it work on all YouTube videos?",
+    answer:
+      "Yes. The extension activates automatically on any YouTube watch page (youtube.com/watch) and displays the thumbnail for that video.",
+  },
+  {
+    question: "What image resolution does it show?",
+    answer:
+      "It always tries to fetch the highest available resolution — maxres (1280×720) first, and falls back to medium quality if the maxres thumbnail is not available.",
+  },
+  {
+    question: "Can I save or download the thumbnail?",
+    answer:
+      "Click the thumbnail to open the full-size image in a new browser tab, where you can save it using your browser's standard image save option.",
+  },
+  {
+    question: "Does the extension collect any personal data?",
+    answer:
+      "No. The extension does not collect, store, or transmit any personal data. It only reads the video ID from the current YouTube page URL to fetch the thumbnail.",
+  },
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -42,6 +81,19 @@ const jsonLd = {
     "Automatic highest resolution selection",
     "9 languages supported",
   ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
 };
 
 const features = [
@@ -96,6 +148,11 @@ export default function Home() {
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml:)
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml:)
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {/* Header */}
       <header className="sticky top-0 bg-linear-to-b from-background to-transparent">
@@ -185,6 +242,23 @@ export default function Home() {
               <StepItem key={step.title} number={i + 1} {...step} />
             ))}
           </div>
+        </section>
+        {/* FAQ */}
+        <section className="py-16 flex flex-col gap-8 border-t border-border">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground">
+              Everything you need to know about the extension.
+            </p>
+          </div>
+          <Accordion type="single" collapsible>
+            {faqs.map((faq, i) => (
+              <AccordionItem key={faq.question} value={`faq-${i}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </section>
       </main>
     </div>
