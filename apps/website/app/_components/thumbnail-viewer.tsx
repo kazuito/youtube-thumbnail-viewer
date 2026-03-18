@@ -4,6 +4,7 @@ import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { EXAMPLES } from "@/lib/examples";
 import { parseVideoId } from "@/lib/youtube";
+import { HeroSection } from "./hero-section";
 import { ThumbnailGallery } from "./thumbnail-gallery";
 import { UrlInput } from "./url-input";
 import { VideoEmbed } from "./video-embed";
@@ -35,6 +36,7 @@ export function ThumbnailViewer() {
 
   return (
     <div className="flex flex-col gap-8">
+      {!value && <HeroSection />}
       <UrlInput
         value={value}
         onChange={(value) => {
