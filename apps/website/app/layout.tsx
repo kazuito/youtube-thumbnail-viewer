@@ -13,6 +13,7 @@ import { ChromeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -156,6 +157,7 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
+          <Toaster />
         </NuqsAdapter>
       </body>
     </html>

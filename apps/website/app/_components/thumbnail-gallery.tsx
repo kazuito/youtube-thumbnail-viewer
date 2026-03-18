@@ -8,6 +8,7 @@ import {
   LinkIcon,
 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -69,13 +70,24 @@ function ThumbnailCard({
     canvas.height = bitmap.height;
     canvas.getContext("2d")?.drawImage(bitmap, 0, 0);
     const pngBlob = await new Promise<Blob>((resolve, reject) =>
-      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), "image/png"),
+      canvas.toBlob(
+        (b) => (b ? resolve(b) : reject(new Error("toBlob failed"))),
+        "image/png",
+      ),
     );
-    await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+    await navigator.clipboard.write([
+      new ClipboardItem({ "image/png": pngBlob }),
+    ]);
+    toast.success("Image copied to clipboard", {
+      description: `${label} (${width}×${height})`,
+    });
   };
 
   const handleCopyUrl = async () => {
     await navigator.clipboard.writeText(url);
+    toast.success("Image URL copied to clipboard", {
+      description: `${label} (${width}×${height})`,
+    });
   };
 
   return (
