@@ -1,14 +1,15 @@
-export function getVideoId() {
-  return new URL(window.location.href).searchParams.get("v");
+export function parseVideoId(url: string) {
+  return new URL(url).searchParams.get("v");
 }
 
-export async function getAvailableThumbnailUrl(videoId: string) {
-  const imageUrl = (filename: string) =>
-    `https://img.youtube.com/vi/${videoId}/${filename}`;
-  const filenames = ["maxresdefault.jpg", "mqdefault.jpg"];
+const THUMBNAIL_NAMES = ["maxresdefault", "mqdefault"] as const;
 
-  for (const filename of filenames) {
-    const url = imageUrl(filename);
+export async function getAvailableThumbnailUrl(videoId: string) {
+  const imageUrl = (name: string) =>
+    `https://img.youtube.com/vi/${videoId}/${name}.jpg`;
+
+  for (const name of THUMBNAIL_NAMES) {
+    const url = imageUrl(name);
     const res = await fetch(url, { method: "HEAD" });
 
     if (res.ok) {

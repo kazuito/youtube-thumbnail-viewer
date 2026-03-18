@@ -7,7 +7,7 @@ ytv-thumbnail-preview {
   z-index: 20;
   display: block !important;
 
-  & .ytv-link {
+  & .ytv-anchor {
     display: flex;
     border-radius: 8px;
     transition: 0.2s;
@@ -21,7 +21,7 @@ ytv-thumbnail-preview {
       filter: brightness(1.3);
     }
 
-    & .ytv-img {
+    & .ytv-image {
       width: 100%;
       height: 100%;
       border-radius: 8px;
@@ -54,7 +54,7 @@ ytv-thumbnail-preview {
 }
 
 /* Overriding */
-#description-inner:has(.ytv-link:active)
+#description-inner:has(.ytv-anchor:active)
   ~ yt-interaction#description-interaction.down
   > .yt-interaction.style-scope.fill {
   opacity: 0 !important;

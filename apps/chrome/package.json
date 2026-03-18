@@ -12,8 +12,8 @@
     "zip:firefox": "wxt zip -b firefox",
     "lint": "biome lint",
     "format": "biome format --write",
-    "check": "pnpm biome check --write --unsafe && pnpm typecheck",
     "typecheck": "tsc --noEmit",
+    "check": "pnpm biome check --write --unsafe && pnpm typecheck",
     "postinstall": "wxt prepare"
   },
   "devDependencies": {

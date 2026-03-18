@@ -1,93 +1,106 @@
 import type { ContentScriptContext } from "wxt/utils/content-script-context";
 import { createIntegratedUi } from "wxt/utils/content-script-ui/integrated";
 import { sleep } from "./utils";
-import { getAvailableThumbnailUrl, getVideoId } from "./youtube";
+import { getAvailableThumbnailUrl } from "./youtube";
 
 const FADEOUT_DURATION = 240;
 
 const containerTagName = "ytv-thumbnail-preview";
 
 const classNames = {
-  link: "ytv-link",
-  img: "ytv-img",
+  anchor: "ytv-anchor",
+  image: "ytv-image",
 } as const;
 
 const selectors = {
-  link: `${containerTagName} .${classNames.link}`,
-  img: `${containerTagName} .${classNames.img}`,
+  anchor: `${containerTagName} .${classNames.anchor}`,
+  image: `${containerTagName} .${classNames.image}`,
 } as const;
 
-export async function updateThumbnail(ctx: ContentScriptContext) {
-  const link = document.querySelector(selectors.link);
-  const img = document.querySelector(selectors.img);
+export async function updateThumbnail(
+  context: ContentScriptContext,
+  videoId: string | null,
+) {
+  const anchor = document.querySelector<HTMLAnchorElement>(selectors.anchor);
+  const image = document.querySelector<HTMLImageElement>(selectors.image);
 
   // start hide animation for existing image
-  img?.setAttribute("data-hidden", "true");
-
-  const videoId = getVideoId();
+  image?.setAttribute("data-hidden", "true");
 
   if (!videoId) {
     clean();
     return;
   }
 
-  const [imageUrl] = await Promise.all([
+  const [newImageUrl] = await Promise.all([
     await getAvailableThumbnailUrl(videoId),
     sleep(FADEOUT_DURATION), // wait for fadeout animation of previous image
   ]);
 
-  if (!imageUrl) {
+  if (!newImageUrl) {
     clean();
     return;
   }
 
-  if (link && img) {
-    if (img.getAttribute("src") === imageUrl) return;
+  console.log({
+    image,
+    videoId,
+    newImageUrl,
+  });
 
-    const newImage = makeImageElement(imageUrl);
+  if (anchor && image) {
+    if (image.getAttribute("src") === newImageUrl) {
+      alert("Thumbnail is already up to date.");
+      return;
+    }
 
-    // remove old image then append new one. reuse existing link element.
+    const newImage = createImage(newImageUrl);
+
+    // remove old image then append new one. reuse existing anchor element.
     newImage.onload = () => {
-      img.remove();
-      link.appendChild(newImage);
-      link.setAttribute("href", imageUrl);
+      image.remove();
+      anchor.appendChild(newImage);
+      anchor.setAttribute("href", newImageUrl);
     };
 
     return;
   }
 
   clean();
-  injectThumbnail(ctx, imageUrl);
+  injectThumbnail(context, newImageUrl);
 }
 
-function injectThumbnail(ctx: ContentScriptContext, imageUrl: string) {
-  const ui = createIntegratedUi(ctx, {
+function injectThumbnail(context: ContentScriptContext, imageUrl: string) {
+  const onMount = async (container: HTMLElement) => {
+    const anchor = document.createElement("a");
+    anchor.setAttribute("href", imageUrl);
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    anchor.className = classNames.anchor;
+
+    const image = createImage(imageUrl);
+    image.onload = () => {
+      anchor.appendChild(image);
+      container.append(anchor);
+    };
+  };
+
+  const ui = createIntegratedUi(context, {
     position: "inline",
     anchor: "#description-inline-expander",
     append: "first",
     tag: containerTagName,
-    onMount: async (container) => {
-      const link = document.createElement("a");
-      link.setAttribute("href", imageUrl);
-      link.target = "_blank";
-      link.className = classNames.link;
-
-      const img = makeImageElement(imageUrl);
-      img.onload = () => {
-        link.appendChild(img);
-        container.append(link);
-      };
-    },
+    onMount,
   });
 
   ui.autoMount();
 }
 
-function makeImageElement(imageUrl: string): HTMLImageElement {
-  const img = document.createElement("img");
-  img.src = imageUrl;
-  img.className = classNames.img;
-  return img;
+function createImage(imageUrl: string): HTMLImageElement {
+  const image = document.createElement("img");
+  image.src = imageUrl;
+  image.className = classNames.image;
+  return image;
 }
 
 /**
