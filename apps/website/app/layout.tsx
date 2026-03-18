@@ -9,12 +9,12 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { cn } from "@/lib/utils";
 import { ChromeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,7 +86,7 @@ export default function RootLayout({
           <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
         )}
         <NuqsAdapter>
-          <header className="sticky top-0 bg-linear-to-b from-background to-transparent">
+          <header className="z-10 sticky top-0 bg-linear-to-b from-background to-transparent">
             <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
               <Link
                 href="/"

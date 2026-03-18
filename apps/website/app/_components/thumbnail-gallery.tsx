@@ -65,9 +65,7 @@ interface ThumbnailGalleryProps {
 export function ThumbnailGallery({ videoId }: ThumbnailGalleryProps) {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-sm font-medium text-muted-foreground">
-        Thumbnails
-      </h2>
+      <h2 className="text-sm font-medium text-muted-foreground">Thumbnails</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {THUMBNAILS.map((t) => (
           <ThumbnailCard key={t.name} videoId={videoId} {...t} />

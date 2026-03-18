@@ -12,15 +12,15 @@ import { parseVideoId } from "@/lib/youtube";
 
 interface UrlInputProps {
   value: string;
-  setValue: (value: string) => void;
+  onChange: (value: string) => void;
 }
 
-export function UrlInput({ value, setValue }: UrlInputProps) {
+export function UrlInput({ value, onChange }: UrlInputProps) {
   const hasInput = value.trim().length > 0;
   const invalid = hasInput && !parseVideoId(value);
 
   const handleClear = () => {
-    setValue("");
+    onChange("");
   };
 
   return (
@@ -28,7 +28,7 @@ export function UrlInput({ value, setValue }: UrlInputProps) {
       <InputGroup>
         <InputGroupInput
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           placeholder="YouTube URL or video ID"
           aria-invalid={invalid}
         />
@@ -41,7 +41,7 @@ export function UrlInput({ value, setValue }: UrlInputProps) {
       <Button
         onClick={async () => {
           const text = await navigator.clipboard.readText();
-          setValue(text);
+          onChange(text);
         }}
       >
         <ArrowLeftToLine />

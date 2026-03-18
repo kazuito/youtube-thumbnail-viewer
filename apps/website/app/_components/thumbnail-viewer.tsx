@@ -20,15 +20,28 @@ export function ThumbnailViewer() {
   };
 
   useEffect(() => {
+    if (!videoId || value.trim() === videoId) return;
+
     const timer = setTimeout(() => {
       setVideoId(parseVideoId(value));
     }, 300);
     return () => clearTimeout(timer);
-  }, [value, setVideoId]);
+  }, [value, setVideoId, videoId]);
+
+  useEffect(() => {
+    if (!videoId) return;
+    window.scrollTo({ top: 0 });
+  }, [videoId]);
 
   return (
     <div className="flex flex-col gap-8">
-      <UrlInput value={value} setValue={setValue} />
+      <UrlInput
+        value={value}
+        onChange={(value) => {
+          setValue(value);
+          setVideoId(parseVideoId(value));
+        }}
+      />
       {videoId ? (
         <>
           <ThumbnailGallery videoId={videoId} />
