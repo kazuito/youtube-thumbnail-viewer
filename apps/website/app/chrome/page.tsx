@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { env } from "@/lib/env";
 import { CHROME_STORE_URL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import chromePackage from "../../../chrome/package.json";
@@ -65,6 +66,15 @@ export default function Home() {
       />
       <main className="max-w-4xl mx-auto px-6">
         <HeroSection />
+        <div>
+          <Image
+            src="/ext-demo.jpg"
+            alt="YouTube Thumbnail Viewer Chrome Extension demo; shows a YouTube video page with the thumbnail displayed in the description area"
+            width={800}
+            height={450}
+            className="rounded-s-3xl mask-r-from-65% select-none pointer-events-none"
+          />
+        </div>
         <FeaturesSection />
         <HowItWorksSection />
         <ReviewsSection />
