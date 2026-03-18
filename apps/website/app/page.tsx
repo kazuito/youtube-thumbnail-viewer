@@ -28,6 +28,13 @@ const jsonLd = {
     url: "https://github.com/kazuito",
   },
   softwareVersion: chromePackage.version,
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    ratingCount: "6",
+    bestRating: "5",
+    worstRating: "1",
+  },
   inLanguage: ["en", "ar", "de", "es", "fr", "hi", "it", "ja", "ko"],
   featureList: [
     "View YouTube thumbnails inline",
