@@ -1,6 +1,7 @@
-import { ChromeIcon, ExternalLink } from "lucide-react";
+import { ChromeIcon, ExternalLink, Star } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { env } from "@/lib/env";
 import { CHROME_STORE_URL } from "@/lib/site";
 
 export function HeroSection() {
@@ -14,6 +15,23 @@ export function HeroSection() {
         A lightweight Chrome extension that displays a video's thumbnail
         directly in the description area on YouTube.
       </p>
+      <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+        <span className="flex items-center gap-0.5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star
+              // biome-ignore lint/suspicious/noArrayIndexKey: static list
+              key={i}
+              className="size-3.5 fill-current text-foreground"
+            />
+          ))}
+          <span className="sr-only">
+            {env.CHROME_STORE_RATING_VALUE} out of 5 stars (
+            {env.CHROME_STORE_RATING_COUNT} reviews)
+          </span>
+        </span>
+        <span className="select-none">·</span>
+        <span>1,000+ users</span>
+      </div>
       <div className="flex items-center gap-3">
         <Button asChild size="lg" className="gap-2 px-6">
           <Link

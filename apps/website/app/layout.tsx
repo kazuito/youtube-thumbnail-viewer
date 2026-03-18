@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { env } from "@/lib/env";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
-import { GoogleAnalytics } from "./_components/google-analytics";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
