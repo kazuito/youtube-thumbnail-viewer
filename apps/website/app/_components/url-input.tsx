@@ -1,7 +1,19 @@
 "use client";
 
-import { ArrowRightToLineIcon, CornerDownLeft, XIcon } from "lucide-react";
+import {
+  ArrowRightToLineIcon,
+  ChevronDownIcon,
+  CopyIcon,
+  CornerDownLeftIcon,
+  XIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   InputGroup,
   InputGroupAddon,
@@ -9,6 +21,21 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { parseVideoId } from "@/lib/youtube";
+
+const copyOptions = [
+  {
+    label: "Video ID",
+    getValue: (videoId: string) => videoId,
+  },
+  {
+    label: "YouTube URL",
+    getValue: (videoId: string) => `https://www.youtube.com/watch?v=${videoId}`,
+  },
+  {
+    label: "Embed URL",
+    getValue: (videoId: string) => `https://www.youtube.com/embed/${videoId}`,
+  },
+];
 
 interface UrlInputProps {
   value: string;
@@ -18,6 +45,7 @@ interface UrlInputProps {
 export function UrlInput({ value, onChange }: UrlInputProps) {
   const hasInput = value.trim().length > 0;
   const invalid = hasInput && !parseVideoId(value);
+  const videoId = parseVideoId(value);
 
   const handleClear = () => {
     onChange("");
@@ -50,8 +78,31 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
       </InputGroup>
       <Button>
         Submit
-        <CornerDownLeft />
+        <CornerDownLeftIcon className="opacity-80" />
       </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">
+            Copy
+            <ChevronDownIcon />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          {copyOptions.map((option) => (
+            <DropdownMenuItem
+              key={option.label}
+              onClick={async () => {
+                if (videoId) {
+                  await navigator.clipboard.writeText(option.getValue(videoId));
+                }
+              }}
+            >
+              <CopyIcon />
+              <span className="sr-only">Copy</span> {option.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
