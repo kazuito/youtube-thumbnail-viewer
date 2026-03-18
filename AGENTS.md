@@ -39,12 +39,34 @@ Injects a thumbnail image into the YouTube watch page (`/watch?v=...`) descripti
 - Styling: Tailwind CSS v4
 - UI: shadcn/ui (Radix UI primitives), lucide-react icons
 - Linter/Formatter: Biome
-- Key pages/components in `app/`:
-  - `page.tsx` — landing page
-  - `_components/` — hero, features, how-it-works, reviews, FAQ sections
-  - `layout.tsx` — root layout with metadata/SEO
-  - `opengraph-image.tsx`, `sitemap.ts`, `robots.ts` — SEO utilities
+- URL state: nuqs (`useQueryState`) — video ID is persisted as `?vid=` query param
 - Env validation: `@t3-oss/env-nextjs` + Zod (see `lib/env.ts`)
+
+#### Routes
+
+| Route | File | Description |
+|---|---|---|
+| `/` | `app/page.tsx` | Thumbnail viewer tool |
+| `/chrome` | `app/chrome/page.tsx` | Chrome extension landing page |
+
+#### Layout (`app/layout.tsx`)
+- Root layout shared across all routes
+- Contains the sticky header (logo + "Add to Chrome" button) and footer
+- Wraps children in `NuqsAdapter` (required for `useQueryState`)
+- Metadata, OpenGraph, Twitter card, and Google Analytics
+
+#### Thumbnail viewer (`/`) — `app/_components/`
+- `thumbnail-viewer.tsx` — client component; owns `?vid=` query state via `useQueryState("vid")`
+- `url-input.tsx` — text input accepting YouTube URL or bare video ID; parses on change (300 ms debounce) and updates `?vid=`; Paste button reads from clipboard; shows example suggestion cards when empty
+- `video-embed.tsx` — YouTube `<iframe>` embed (16:9)
+- `thumbnail-gallery.tsx` — grid of all available resolutions (`maxresdefault` → `default`, plus frame thumbnails 0–3); each card hides itself via `onError` if the image doesn't exist; clicking opens full-size in a new tab
+
+#### Chrome LP (`/chrome`) — `app/chrome/_components/`
+- `hero-section.tsx`, `features-section.tsx`, `how-it-works-section.tsx`, `reviews-section.tsx`, `faq-section.tsx`
+- JSON-LD structured data (SoftwareApplication + FAQ) injected via `<script>` in `chrome/page.tsx`
+
+#### SEO utilities (`app/`)
+- `opengraph-image.tsx`, `sitemap.ts`, `robots.ts`
 
 ## Workspace
 
