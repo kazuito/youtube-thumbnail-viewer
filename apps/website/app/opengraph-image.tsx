@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
@@ -6,9 +8,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const iconData = await fetch(
-    new URL("../public/icon.png", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  const iconData = await readFile(
+    path.join(process.cwd(), "public/icon.png"),
+  );
 
   return new ImageResponse(
     <div
@@ -26,7 +28,7 @@ export default async function OpenGraphImage() {
     >
       {/** biome-ignore lint/performance/noImgElement: We can't use Next.js Image component here */}
       <img
-        src={iconData as unknown as string}
+        src={`data:image/png;base64,${iconData.toString("base64")}`}
         width={120}
         height={120}
         style={{ marginBottom: "40px", borderRadius: "20px" }}
