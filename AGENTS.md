@@ -1,112 +1,92 @@
 # YouTube Thumbnail Viewer
 
-Monorepo containing a Chrome Extension and its marketing website.
-
-## Apps
-
-### `apps/chrome` — Chrome Extension
-- Framework: [WXT](https://wxt.dev/) (web extension framework)
-- Language: TypeScript
-- Linter/Formatter: Biome
-- Permissions: `host_permissions` on `https://www.youtube.com/*`
-
-#### What it does
-Injects a thumbnail image into the YouTube watch page (`/watch?v=...`) description area. The thumbnail floats right inside `#description-inline-expander`, is clickable (opens full-size image in a new tab), and animates in/out on video navigation.
-
-#### How it works
-1. **Content script** (`entrypoints/content.ts`) runs on all `youtube.com` pages.
-   - On load, checks if the URL matches `/watch*` and calls `updateThumbnail`.
-   - Listens for `wxt:locationchange` (SPA navigation) to call `updateThumbnail` or `clean` as the user navigates between pages.
-
-2. **Thumbnail resolution** (`lib/youtube.ts`)
-   - Extracts `?v=` param from the URL for the video ID.
-   - Tries thumbnail URLs in order of quality: `maxresdefault.jpg` → `mqdefault.jpg` (via `HEAD` requests to `img.youtube.com`).
-   - Returns the first URL that responds with HTTP 200.
-
-3. **DOM injection** (`lib/inject.ts`)
-   - Uses WXT's `createIntegratedUi` to mount a custom element `<ytv-thumbnail-preview>` anchored before `#description-inline-expander`.
-   - On video change, fades out the old image (240 ms), then swaps in the new `<img>` once loaded — reusing the existing `<a>` link element if present.
-   - `clean()` removes all `<ytv-thumbnail-preview>` elements (called when navigating away from a watch page).
-
-4. **Styles** (`assets/styles.css`)
-   - `<ytv-thumbnail-preview>` floats right, 16:9 aspect ratio, height `12rem`.
-   - Fade-in uses CSS `@starting-style` (opacity + blur + scale). Fade-out is a `ytv-fadeout` keyframe animation triggered via `data-hidden="true"`.
-   - Overrides YouTube's `#snippet` max-height and suppresses the ripple effect on description click-through.
-
-### `apps/website` — Marketing Website
-- Framework: Next.js 16 (App Router)
-- Language: TypeScript
-- Styling: Tailwind CSS v4
-- UI: shadcn/ui (Radix UI primitives), lucide-react icons
-- Linter/Formatter: Biome
-- URL state: nuqs (`useQueryState`) — video ID is persisted as `?vid=` query param
-- Env validation: `@t3-oss/env-nextjs` + Zod (see `lib/env.ts`)
-
-#### Routes
-
-| Route | File | Description |
-|---|---|---|
-| `/` | `app/page.tsx` | Thumbnail viewer tool |
-| `/chrome` | `app/chrome/page.tsx` | Chrome extension landing page |
-
-#### Layout (`app/layout.tsx`)
-- Root layout shared across all routes
-- Renders `<Header>` and `<Footer>` components from `app/_components/`
-- Wraps children in `NuqsAdapter` (required for `useQueryState`)
-- Global metadata, OpenGraph template, Twitter card, and Google Analytics
-
-#### Shared components (`app/_components/`)
-- `header.tsx` — sticky site header: logo, nav links (Viewer, Chrome Extension), "Add to Chrome" button
-- `footer.tsx` — copyright, GitHub and Chrome Web Store links
-- `hero-section.tsx` — hero used on `/` (also imported on the `/chrome` page)
-- `thumbnail-viewer.tsx` — client component; owns `?vid=` query state via `useQueryState("vid")`
-- `url-input.tsx` — text input accepting YouTube URL or bare video ID; parses on change (300 ms debounce) and updates `?vid=`; Paste button reads from clipboard; shows example suggestion cards when empty
-- `example-videos.tsx` — example video suggestion cards rendered inside `url-input.tsx` when the input is empty; sourced from `lib/examples.ts`
-- `video-embed.tsx` — YouTube `<iframe>` embed (16:9)
-- `thumbnail-gallery.tsx` — grid of all available resolutions (`maxresdefault` → `default`, plus frame thumbnails 0–3); each card hides itself via `onError` if the image doesn't exist; clicking opens full-size in a new tab
-
-#### Chrome LP (`/chrome`) — `app/chrome/_components/`
-- `hero-section.tsx`, `features-section.tsx`, `how-it-works-section.tsx`, `reviews-section.tsx`, `faq-section.tsx`
-- JSON-LD structured data (SoftwareApplication + FAQ) injected via `<script>` in `chrome/page.tsx`
-
-#### SEO
-- Per-page `metadata` exports with canonical URLs, OpenGraph, and Twitter Card on both `/` and `/chrome`
-- `opengraph-image.tsx` — generates the shared OG image (1200×630) at build time using `fs.readFile`
-- `sitemap.ts` — covers `/` (priority 1.0) and `/chrome` (priority 0.8)
-- `robots.ts` — allows all crawlers, references `/sitemap.xml`
-
-#### Data (`lib/`)
-- `site.ts` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, `CHROME_STORE_URL`
-- `env.ts` — type-safe env vars (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `CHROME_STORE_RATING_VALUE`, `CHROME_STORE_RATING_COUNT`)
-- `examples.ts` — list of example videos (`id`, `title`, `author`) shown in the URL input suggestions
+Monorepo containing the Chrome extension and its marketing website.
 
 ## Workspace
 
-pnpm workspaces. Root `pnpm-workspace.yaml` includes `apps/*`.
+- Package manager: `pnpm`
+- Workspace pattern: `apps/*`
+- Main apps:
+  - `apps/chrome`: WXT-based browser extension
+  - `apps/website`: Next.js 16 marketing site and online thumbnail viewer
 
-Each app manages its own `node_modules`, `pnpm-lock.yaml`, and scripts.
+## Documentation Layout
+
+- Root `README.md` is a symlink to `apps/chrome/README.md`
+- Chrome extension docs live in `apps/chrome/README.md`
+- Website docs live in `apps/website/README.md`
+- Keep these docs aligned with code changes when behavior, scripts, or structure changes
+
+## `apps/chrome`
+
+- Framework: [WXT](https://wxt.dev/)
+- Language: TypeScript
+- Styling: injected CSS in `assets/styles.css`
+- Linter/Formatter: Biome
+- Runtime: content script on `https://www.youtube.com/*`
+
+### Behavior
+
+- Injects a clickable thumbnail into the YouTube watch page description area
+- Only acts on `/watch*` pages
+- Handles YouTube SPA navigation via `wxt:locationchange`
+- Resolves thumbnails from `img.youtube.com` with `HEAD` requests
+
+### Important Files
+
+- `entrypoints/content.ts`: content script entrypoint
+- `lib/inject.ts`: DOM mount, image swap, cleanup
+- `lib/youtube.ts`: video ID parsing and thumbnail URL resolution
+- `assets/styles.css`: injected styles and YouTube-specific overrides
+- `wxt.config.ts`: WXT config, manifest, and dev browser settings
+
+## `apps/website`
+
+- Framework: Next.js 16 App Router
+- Language: TypeScript
+- Styling: Tailwind CSS v4
+- UI: shadcn/ui primitives with `lucide-react`
+- URL state: `nuqs`
+- Env validation: `@t3-oss/env-nextjs` with Zod
+
+### Main Routes
+
+- `/`: thumbnail viewer tool
+- `/chrome`: Chrome extension landing page
+
+### Important Files
+
+- `app/layout.tsx`: shared layout, metadata, analytics, header/footer
+- `app/page.tsx`: viewer page
+- `app/chrome/page.tsx`: landing page and JSON-LD
+- `app/_components/thumbnail-viewer.tsx`: client-side viewer state
+- `app/_components/url-input.tsx`: YouTube URL and video ID input handling
+- `app/_components/thumbnail-gallery.tsx`: thumbnail variant grid
+- `lib/env.ts`: typed environment variables
+- `lib/site.ts`: site constants
 
 ## Commands
 
+From the repo root:
+
 ```bash
-# From repo root
-pnpm install            # install all workspaces
-
-# Chrome extension (from apps/chrome or via -F flag)
-pnpm --filter chrome dev          # dev mode (Chrome)
-pnpm --filter chrome build        # production build
-pnpm --filter chrome zip          # package for Chrome Web Store
-pnpm --filter chrome typecheck    # type check
-
-# Website (from apps/website or via -F flag)
-pnpm --filter website dev         # dev server
-pnpm --filter website build       # production build
-pnpm --filter website typecheck   # type check
-pnpm --filter website lint        # biome check
+pnpm install
+pnpm --filter chrome dev
+pnpm --filter chrome build
+pnpm --filter chrome zip
+pnpm --filter chrome typecheck
+pnpm --filter website dev
+pnpm --filter website build
+pnpm --filter website typecheck
+pnpm --filter website lint
 ```
 
-## Instructions
+You can also run app-local scripts from inside each app directory.
+
+## Working Rules
 
 - Use `pnpm`
-- Run `pnpm typecheck` after edits (in the relevant app directory)
-- Biome is used for linting/formatting in both apps — not ESLint/Prettier
+- Run `pnpm typecheck` in the relevant app after edits
+- Use Biome, not ESLint or Prettier, for formatting and linting workflows
+- Prefer updating the app-specific README when changing app behavior
+- Be careful with generated output under `apps/chrome/.output`, `apps/chrome/.wxt`, and `apps/website/.next`
