@@ -1,30 +1,50 @@
 export const EXAMPLES = [
-  { id: "XqZsoesa55w", title: "Baby Shark Dance", author: "Pinkfong" },
   {
-    id: "kTJczUoc26U",
-    title: "Despacito",
-    author: "Luis Fonsi ft. Daddy Yankee",
+    id: "cRZOUcpiOxY",
+    title: "Fever Feels Horrible, but is Actually Awesome!",
+    author: "Kurzgesagt - In a Nutshell",
   },
-  { id: "JGwWNGJdvx8", title: "Shape of You", author: "Ed Sheeran" },
-  {
-    id: "RgKAFK5djSk",
-    title: "See You Again",
-    author: "Wiz Khalifa ft. Charlie Puth",
-  },
-  {
-    id: "OPf0YbXqDm0",
-    title: "Uptown Funk",
-    author: "Mark Ronson ft. Bruno Mars",
-  },
-  { id: "9bZkp7q19f0", title: "Gangnam Style", author: "PSY" },
-  { id: "fLexgOxsZu0", title: "The Lazy Song", author: "Bruno Mars" },
   {
     id: "0e3GPea1Tyg",
     title: "$456,000 Squid Game In Real Life!",
     author: "MrBeast",
   },
-  { id: "hT_nvWreIhg", title: "Counting Stars", author: "OneRepublic" },
+  {
+    id: "LmZD-TU96q4",
+    title: "Kenshi Yonezu - IRIS OUT",
+    author: "Kenshi Yonezu",
+  },
+  {
+    id: "zIwLWfaAg-8",
+    title: "Elon Musk: The future we're building -- and boring | TED",
+    author: "TED",
+  },
   { id: "rokGy0huYEA", title: "2020 — Year in Search", author: "Google" },
+  {
+    id: "Hz2F_S3Tl0Y",
+    title: "I Jumped From Space (World Record Supersonic Freefall) ",
+    author: "Red Bull",
+  },
+  {
+    id: "jNQXAC9IVRw",
+    title: "Me at the zoo",
+    author: "jawed",
+  },
+  {
+    id: "A0FZIwabctw",
+    title: "Falcon Heavy & Starman",
+    author: "SpaceX",
+  },
+  {
+    id: "bBC-nXj3Ng4",
+    title: "But how does bitcoin actually work?",
+    author: "3Blue1Brown",
+  },
+  {
+    id: "FzYyDPS4cEU",
+    title: "エヌ",
+    author: "全てあなたの所為です。",
+  },
 ] as const;
 
 export type Example = (typeof EXAMPLES)[number];
