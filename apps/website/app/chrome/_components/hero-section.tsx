@@ -7,11 +7,11 @@ import { CHROME_STORE_URL } from "@/lib/site";
 export function HeroSection() {
   return (
     <section className="py-20 flex flex-col items-center text-center gap-6">
-      <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-balance">
+      <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
         See the thumbnail,{" "}
         <span className="text-muted-foreground">without leaving YouTube</span>
       </h1>
-      <p className="max-w-xl text-muted-foreground text-lg leading-relaxed text-balance">
+      <p className="max-w-xl text-muted-foreground text-lg leading-snug text-balance">
         A lightweight Chrome extension that displays a video's thumbnail
         directly in the description area on YouTube.
       </p>
