@@ -19,6 +19,11 @@ export const EXAMPLES = [
     title: "Elon Musk: The future we're building -- and boring | TED",
     author: "TED",
   },
+  {
+    id: "XxOh12Uhg08",
+    title: "Driving Tesla Cybertruck: Everything You Need to Know",
+    author: "Marques Brownlee",
+  },
   { id: "rokGy0huYEA", title: "2020 — Year in Search", author: "Google" },
   {
     id: "Hz2F_S3Tl0Y",
@@ -31,6 +36,11 @@ export const EXAMPLES = [
     author: "jawed",
   },
   {
+    id: "JdFRjsEZrmU",
+    title: "Acid vs Lava- Testing Liquids That Melt Everything",
+    author: "Mark Rober",
+  },
+  {
     id: "A0FZIwabctw",
     title: "Falcon Heavy & Starman",
     author: "SpaceX",
@@ -41,9 +51,9 @@ export const EXAMPLES = [
     author: "3Blue1Brown",
   },
   {
-    id: "FzYyDPS4cEU",
-    title: "エヌ",
-    author: "全てあなたの所為です。",
+    id: "Qskm9MTz2V4",
+    title: "RUSH E",
+    author: "Sheet Music Boss",
   },
 ] as const;
 
