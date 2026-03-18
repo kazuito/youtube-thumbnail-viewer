@@ -16,19 +16,21 @@ export function HeroSection() {
         directly in the description area on YouTube.
       </p>
       <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-        <span className="flex items-center gap-0.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              // biome-ignore lint/suspicious/noArrayIndexKey: static list
-              key={i}
-              className="size-3.5 fill-current text-foreground"
-            />
-          ))}
-          <span className="sr-only">
-            {env.CHROME_STORE_RATING_VALUE} out of 5 stars (
-            {env.CHROME_STORE_RATING_COUNT} reviews)
+        <div className="flex items-center gap-2">
+          <span className="">
+            {env.CHROME_STORE_RATING_VALUE} out of 5
+            <span className="sr-only"> stars</span>
           </span>
-        </span>
+          <span className="flex items-center gap-0.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star
+                // biome-ignore lint/suspicious/noArrayIndexKey: static list
+                key={i}
+                className="size-3.5 fill-current text-foreground"
+              />
+            ))}
+          </span>
+        </div>
         <span className="select-none">·</span>
         <span>1,000+ users</span>
       </div>
