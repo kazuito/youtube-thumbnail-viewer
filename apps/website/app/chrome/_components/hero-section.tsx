@@ -5,7 +5,10 @@ import { env } from "@/lib/env";
 import { CHROME_STORE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-export function HeroSection({ className, ...props }: React.ComponentProps<"section">) {
+export function HeroSection({
+  className,
+  ...props
+}: React.ComponentProps<"section">) {
   return (
     <section
       className={cn(

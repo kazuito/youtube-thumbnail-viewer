@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ClipboardCopyIcon,
-  CopyIcon,
-  DownloadIcon,
-  ImageIcon,
-  LinkIcon,
-} from "lucide-react";
+import { CopyIcon, DownloadIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";

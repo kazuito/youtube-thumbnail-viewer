@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { env } from "@/lib/env";
-import { CHROME_STORE_URL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import {
+  CHROME_STORE_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 import chromePackage from "../../../chrome/package.json";
 import { FaqSection, faqJsonLd } from "./_components/faq-section";
 import { FeaturesSection } from "./_components/features-section";
@@ -47,8 +52,39 @@ const jsonLd = {
   ],
 };
 
+const CHROME_TITLE = "YouTube Thumbnail Chrome Extension";
+const CHROME_DESCRIPTION =
+  "Free Chrome extension that displays YouTube video thumbnails inline, right in the description area — no page reloads, no extra tabs. Supports max resolution.";
+const CHROME_URL = `${SITE_URL}chrome`;
+
 export const metadata: Metadata = {
-  title: "Chrome Extension",
+  title: CHROME_TITLE,
+  description: CHROME_DESCRIPTION,
+  keywords: [
+    "YouTube thumbnail Chrome extension",
+    "YouTube thumbnail viewer extension",
+    "view YouTube thumbnails inline",
+    "Chrome extension for YouTube",
+    "YouTube thumbnail in description",
+    "thumbnail preview YouTube",
+  ],
+  alternates: {
+    canonical: CHROME_URL,
+  },
+  openGraph: {
+    type: "website",
+    url: CHROME_URL,
+    siteName: SITE_NAME,
+    title: CHROME_TITLE,
+    description: CHROME_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: CHROME_TITLE,
+    description: CHROME_DESCRIPTION,
+    creator: "@kzito",
+  },
 };
 
 export default function Home() {

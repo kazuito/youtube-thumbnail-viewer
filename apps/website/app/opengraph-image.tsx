@@ -8,9 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const iconData = await readFile(
-    path.join(process.cwd(), "public/icon.png"),
-  );
+  const iconData = await readFile(path.join(process.cwd(), "public/icon.png"));
 
   return new ImageResponse(
     <div
