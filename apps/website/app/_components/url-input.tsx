@@ -1,6 +1,8 @@
 "use client";
 
+import { ArrowLeftToLine, ClipboardIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 function parseVideoId(value: string): string | null {
@@ -49,11 +51,22 @@ export function UrlInput({ initialValue, onVideoId }: UrlInputProps) {
   const invalid = hasInput && !parseVideoId(value);
 
   return (
-    <Input
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      placeholder="YouTube URL or video ID"
-      aria-invalid={invalid}
-    />
+    <div className="flex gap-2">
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="YouTube URL or video ID"
+        aria-invalid={invalid}
+      />
+      <Button
+        onClick={async () => {
+          const text = await navigator.clipboard.readText();
+          setValue(text);
+        }}
+      >
+        <ArrowLeftToLine />
+        Paste
+      </Button>
+    </div>
   );
 }
