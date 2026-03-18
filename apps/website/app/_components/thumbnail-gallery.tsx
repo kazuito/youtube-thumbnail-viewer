@@ -64,8 +64,8 @@ interface ThumbnailGalleryProps {
 
 export function ThumbnailGallery({ videoId }: ThumbnailGalleryProps) {
   return (
-    <div className="flex flex-col gap-6">
-      <h2 className="text-sm font-medium text-muted-foreground mb-3">
+    <div className="flex flex-col gap-4">
+      <h2 className="text-sm font-medium text-muted-foreground">
         Thumbnails
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

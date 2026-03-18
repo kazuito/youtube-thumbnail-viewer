@@ -1,7 +1,9 @@
 "use client";
 
 import { useQueryState } from "nuqs";
+import { useEffect, useState } from "react";
 import { EXAMPLES } from "@/lib/examples";
+import { parseVideoId } from "@/lib/youtube";
 import { ThumbnailGallery } from "./thumbnail-gallery";
 import { UrlInput } from "./url-input";
 import { VideoEmbed } from "./video-embed";
@@ -10,10 +12,23 @@ export function ThumbnailViewer() {
   const [videoId, setVideoId] = useQueryState("vid", {
     history: "push",
   });
+  const [value, setValue] = useState(videoId ?? "");
+
+  const handleSelectExample = (id: string) => {
+    setVideoId(id);
+    setValue(id);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVideoId(parseVideoId(value));
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [value, setVideoId]);
 
   return (
     <div className="flex flex-col gap-8">
-      <UrlInput initialValue={videoId} onVideoId={setVideoId} />
+      <UrlInput value={value} setValue={setValue} />
       {videoId ? (
         <>
           <ThumbnailGallery videoId={videoId} />
@@ -28,7 +43,7 @@ export function ThumbnailViewer() {
             <button
               key={ex.id}
               type="button"
-              onClick={() => setVideoId(ex.id)}
+              onClick={() => handleSelectExample(ex.id)}
               className="flex items-center gap-3 rounded-xl border border-border p-2 text-left hover:bg-muted/50 transition-colors"
             >
               {/* biome-ignore lint/performance/noImgElement: external dynamic URL */}

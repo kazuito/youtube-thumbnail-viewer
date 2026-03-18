@@ -1,0 +1,26 @@
+export function parseVideoId(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  // Plain video ID (11 chars, alphanumeric + - _)
+  if (/^[\w-]{11}$/.test(trimmed)) return trimmed;
+
+  try {
+    const url = new URL(trimmed);
+
+    // https://www.youtube.com/watch?v=...
+    const v = url.searchParams.get("v");
+    if (v) return v;
+
+    // https://youtu.be/...
+    if (url.hostname === "youtu.be") return url.pathname.slice(1);
+
+    // https://www.youtube.com/embed/...
+    const embedMatch = url.pathname.match(/^\/embed\/([\w-]{11})/);
+    if (embedMatch) return embedMatch[1];
+  } catch {
+    // not a URL
+  }
+
+  return null;
+}
