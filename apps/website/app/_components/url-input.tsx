@@ -2,19 +2,21 @@
 
 import {
   ArrowLeftIcon,
-  ArrowRightToLineIcon,
-  ChevronDownIcon,
   ClipboardIcon,
   CopyIcon,
   CornerDownLeftIcon,
+  EllipsisIcon,
+  ExternalLinkIcon,
   XIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -64,6 +66,13 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
       <Button
         onClick={async () => {
           const text = await navigator.clipboard.readText();
+          if (!text) {
+            toast.info("Nothing to paste", {
+              id: "clipboard-empty",
+              description: "Your clipboard is empty.",
+            });
+            return;
+          }
           onChange(text);
         }}
         variant="secondary"
@@ -92,12 +101,21 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="lg">
-            Copy
-            <ChevronDownIcon />
+          <Button variant="outline" size="icon-lg" disabled={!videoId}>
+            <EllipsisIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
+          <DropdownMenuItem asChild>
+            <Link
+              href={`https://www.youtube.com/watch?v=${videoId}`}
+              target="_blank"
+            >
+              <ExternalLinkIcon />
+              Watch on YouTube
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
           {copyOptions.map((option) => (
             <DropdownMenuItem
               key={option.label}
@@ -109,7 +127,7 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
               }}
             >
               <CopyIcon />
-              <span className="sr-only">Copy</span> {option.label}
+              Copy {option.label}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
