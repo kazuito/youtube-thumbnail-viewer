@@ -2,6 +2,7 @@ import { ChromeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { env } from "@/lib/env";
 import { CHROME_STORE_URL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import chromePackage from "../../chrome/package.json";
 import { FaqSection, faqJsonLd } from "./_components/faq-section";
@@ -28,13 +29,17 @@ const jsonLd = {
     url: "https://github.com/kazuito",
   },
   softwareVersion: chromePackage.version,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    ratingCount: "6",
-    bestRating: "5",
-    worstRating: "1",
-  },
+  ...(env.CHROME_STORE_RATING_VALUE && env.CHROME_STORE_RATING_COUNT
+    ? {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: env.CHROME_STORE_RATING_VALUE,
+          ratingCount: env.CHROME_STORE_RATING_COUNT,
+          bestRating: "5",
+          worstRating: "1",
+        },
+      }
+    : {}),
   inLanguage: ["en", "ar", "de", "es", "fr", "hi", "it", "ja", "ko"],
   featureList: [
     "View YouTube thumbnails inline",
