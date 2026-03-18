@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { env } from "@/lib/env";
 import {
   CHROME_STORE_URL,
@@ -102,7 +103,7 @@ export default function Home() {
       />
       <main className="max-w-4xl mx-auto px-6">
         <HeroSection />
-        <div>
+        <div className="relative w-fit h-wit mx-auto">
           <Image
             src="/ext-demo.jpg"
             alt="YouTube Thumbnail Viewer Chrome Extension demo; shows a YouTube video page with the thumbnail displayed in the description area"
@@ -110,6 +111,20 @@ export default function Home() {
             height={450}
             className="rounded-s-3xl mask-r-from-65% select-none pointer-events-none"
           />
+          <Link
+            href="https://img.youtube.com/vi/cRZOUcpiOxY/maxresdefault.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute w-[28.96%] rounded-xs top-[38.6%] left-[35.42%] hover:brightness-105 active:brightness-100"
+          >
+            <Image
+              src="/ext-demo-thumbnail.png"
+              alt="YouTube Thumbnail Viewer Chrome Extension demo; shows a YouTube video page with the thumbnail displayed in the description area"
+              width={800}
+              height={450}
+              className="pointer-events-none select-none"
+            />
+          </Link>
         </div>
         <FeaturesSection />
         <HowItWorksSection />
