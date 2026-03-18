@@ -1,6 +1,20 @@
 "use client";
 
+import {
+  ClipboardCopyIcon,
+  CopyIcon,
+  DownloadIcon,
+  ImageIcon,
+  LinkIcon,
+} from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const THUMBNAILS = [
   { name: "maxresdefault", label: "Max res", width: 1280, height: 720 },
@@ -13,6 +27,11 @@ const THUMBNAILS = [
   { name: "2", label: "Frame 2", width: 120, height: 90 },
   { name: "3", label: "Frame 3", width: 120, height: 90 },
 ] as const;
+
+async function fetchImageBlob(url: string): Promise<Blob> {
+  const res = await fetch(url);
+  return res.blob();
+}
 
 function ThumbnailCard({
   videoId,
@@ -32,8 +51,27 @@ function ThumbnailCard({
 
   if (hidden) return null;
 
+  const handleDownload = async () => {
+    const blob = await fetchImageBlob(url);
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = objectUrl;
+    a.download = `${videoId}-${name}.jpg`;
+    a.click();
+    URL.revokeObjectURL(objectUrl);
+  };
+
+  const handleCopyImage = async () => {
+    const blob = await fetchImageBlob(url);
+    await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+  };
+
+  const handleCopyUrl = async () => {
+    await navigator.clipboard.writeText(url);
+  };
+
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5 group/card">
       <a
         href={url}
         target="_blank"
@@ -48,11 +86,44 @@ function ThumbnailCard({
           onError={() => setHidden(true)}
         />
       </a>
-      <div className="flex items-center justify-between px-0.5 text-xs text-muted-foreground">
-        <span className="font-medium">{label}</span>
-        <span>
-          {width}×{height}
-        </span>
+      <div className="flex items-center justify-between px-0.5">
+        <div className="flex flex-col">
+          <span className="text-xs font-medium">{label}</span>
+          <span className="text-xs text-muted-foreground">
+            {width}×{height}
+          </span>
+        </div>
+        <div className="flex items-center">
+          <Button
+            variant="ghost"
+            onClick={handleDownload}
+            className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8"
+          >
+            <DownloadIcon />
+            <span className="sm:sr-only">Download</span>
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8"
+              >
+                <CopyIcon />
+                <span className="sm:sr-only">Copy</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={handleCopyImage}>
+                <CopyIcon />
+                Copy Image
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCopyUrl}>
+                <CopyIcon />
+                Copy Image URL
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </div>
   );
