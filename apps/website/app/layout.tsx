@@ -86,7 +86,7 @@ export default function RootLayout({
           <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
         )}
         <NuqsAdapter>
-          <header className="z-10 sticky top-0 bg-linear-to-b from-background to-transparent">
+          <header className="z-10 sticky top-0 bg-background/95 backdrop-blur-md">
             <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
               <Link
                 href="/"
