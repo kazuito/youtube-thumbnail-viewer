@@ -1,3 +1,5 @@
 pnpm -r lint
 pnpm -r typecheck
 pnpm -r build
+pnpm -r test
+pnpm -r test:e2e

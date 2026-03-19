@@ -13,4 +13,6 @@ export default defineConfig({
   use: {
     headless: false,
   },
+  // Chrome extensions cannot run in true headless mode; CI uses xvfb instead
+  workers: 1,
 });
