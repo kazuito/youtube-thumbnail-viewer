@@ -42,12 +42,6 @@ export async function updateThumbnail(
     return;
   }
 
-  console.log({
-    image,
-    videoId,
-    newImageUrl,
-  });
-
   if (anchor && image) {
     if (image.getAttribute("src") === newImageUrl) {
       alert("Thumbnail is already up to date.");
