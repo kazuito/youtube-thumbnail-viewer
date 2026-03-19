@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Prehliadač miniatúr YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatúra",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Zobrazuje miniatúru videa priamo v popise YouTube. Jeden pohľad, žiadne zdržovanie. Obrázok, ktorý chcete, presne tam, kde ste.",
+    "description": "Extension Description"
+  }
+}

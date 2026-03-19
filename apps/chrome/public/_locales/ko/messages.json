@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "YouTube 설명 영역에 썸네일 이미지를 표시합니다.",
+    "message": "동영상 썸네일을 YouTube 설명란에 바로 표시합니다. 한눈에 확인, 번거로움 없이. 원하는 이미지가 바로 거기에.",
     "description": "Extension Description"
   }
 }

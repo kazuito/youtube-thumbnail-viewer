@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Pemapar Imej Kecil YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Imej kecil",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Memaparkan imej kecil video terus dalam penerangan YouTube. Sekali pandang, tanpa susah payah. Imej yang anda mahu, tepat di tempat anda berada.",
+    "description": "Extension Description"
+  }
+}

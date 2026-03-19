@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "यूट्यूब थंबनेल व्ह्यूअर",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "थंबनेल",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "व्हिडिओचे थंबनेल थेट YouTube वर्णनात दाखवते. एक नजर, कोणताही त्रास नाही. तुम्हाला हवी असलेली प्रतिमा, अगदी तिथेच.",
+    "description": "Extension Description"
+  }
+}

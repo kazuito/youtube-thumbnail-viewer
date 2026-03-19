@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube 缩略图查看器",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "缩略图",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "直接在 YouTube 描述中显示视频缩略图。一眼即见，毫不费力。你想看的图片，就在眼前。",
+    "description": "Extension Description"
+  }
+}

@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Muestra una imagen en miniatura en el área de descripción en YouTube.",
+    "message": "Muestra la miniatura del video directamente en la descripción de YouTube. Un vistazo, sin fricción. La imagen que quieres, justo donde estás.",
     "description": "Extension Description"
   }
 }

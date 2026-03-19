@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Kitazamaji cha vijipicha vya YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Kijipicha",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Huonyesha kijipicha cha video moja kwa moja kwenye maelezo ya YouTube. Mtazamo mmoja, bila usumbufu. Picha unayoitaka, pale pale ulipo.",
+    "description": "Extension Description"
+  }
+}

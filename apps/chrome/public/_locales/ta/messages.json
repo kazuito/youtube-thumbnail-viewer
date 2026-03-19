@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube தம்ப்நெயில் பார்வையாளர்",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "தம்ப்நெயில்",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "வீடியோவின் தம்ப்நெயிலை நேரடியாக YouTube விளக்கத்தில் காட்டுகிறது. ஒரு பார்வை, எந்த சிரமமும் இல்லை. நீங்கள் விரும்பும் படம், நீங்கள் இருக்கும் இடத்திலேயே.",
+    "description": "Extension Description"
+  }
+}

@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Display a thumbnail image in the description area on YouTube.",
+    "message": "Surfaces the video thumbnail inline in the YouTube description. One look, zero friction. The image you want, right where you are.",
     "description": "Extension Description"
   }
 }

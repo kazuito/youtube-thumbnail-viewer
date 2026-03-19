@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Прегледач YouTube сличица",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Сличица",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Приказује сличицу видеа директно у опису на YouTube-у. Један поглед, без муке. Слика коју желиш, баш тамо где си.",
+    "description": "Extension Description"
+  }
+}

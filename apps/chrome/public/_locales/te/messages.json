@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube థంబ్‌నెయిల్ వీయర్",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "థంబ్‌నెయిల్",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "వీడియో థంబ్‌నెయిల్‌ను నేరుగా YouTube వివరణలో చూపిస్తుంది. ఒక చూపు, ఎలాంటి ఇబ్బంది లేదు. మీకు కావాల్సిన చిత్రం, మీరు ఉన్నచోటే.",
+    "description": "Extension Description"
+  }
+}

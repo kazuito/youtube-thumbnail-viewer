@@ -4,6 +4,7 @@ import {
   MousePointerClick,
   Zap,
 } from "lucide-react";
+import { SUPPORTED_CHROME_LOCALE_COUNT } from "../locales";
 import { FeatureCard } from "./feature-card";
 
 const features = [
@@ -27,9 +28,9 @@ const features = [
   },
   {
     icon: Globe,
-    title: "9 Languages Supported",
+    title: `${SUPPORTED_CHROME_LOCALE_COUNT} Locales Supported`,
     description:
-      "Available in English, Arabic, German, Spanish, French, Hindi, Italian, Japanese, and Korean.",
+      "Available across Chrome locales including Arabic, Bengali, German, Japanese, Portuguese, Chinese, and more.",
   },
 ];
 

@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Πρόγραμμα προβολής μικρογραφιών YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Μικρογραφία",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Εμφανίζει τη μικρογραφία του βίντεο απευθείας στην περιγραφή του YouTube. Μια ματιά, μηδενική τριβή. Η εικόνα που θέλεις, ακριβώς εκεί που βρίσκεσαι.",
+    "description": "Extension Description"
+  }
+}

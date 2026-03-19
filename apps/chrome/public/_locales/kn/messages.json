@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube ಥಂಬ್ನೇಲ್ ವೀಕ್ಷಕ",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "ಥಂಬ್ನೇಲ್",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "ವೀಡಿಯೋದ ಥಂಬ್ನೇಲ್ ಅನ್ನು ನೇರವಾಗಿ YouTube ವಿವರಣೆಯಲ್ಲಿ ತೋರಿಸುತ್ತದೆ. ಒಂದು ನೋಟ, ಯಾವುದೇ ತೊಂದರೆ ಇಲ್ಲ. ನಿಮಗೆ ಬೇಕಾದ ಚಿತ್ರ, ನೀವು ಇರುವ ಜಾಗದಲ್ಲೇ.",
+    "description": "Extension Description"
+  }
+}

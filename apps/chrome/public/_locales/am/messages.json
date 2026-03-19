@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "የYouTube ድንክዬ መመልከቻ",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "ድንክዬ",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "የቪዲዮውን ድንክዬ በቀጥታ በYouTube መግለጫ ውስጥ ያሳያል። አንድ እይታ፣ ምንም እንክብካቤ የለም። የምትፈልጉት ምስል በሚገኙበት ቦታ ነው።",
+    "description": "Extension Description"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Preglednik minijatura za YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Minijatura",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Prikazuje minijaturu videozapisa izravno u opisu na YouTubeu. Jedan pogled, bez muke. Slika koju želiš, upravo tamo gdje jesi.",
+    "description": "Extension Description"
+  }
+}

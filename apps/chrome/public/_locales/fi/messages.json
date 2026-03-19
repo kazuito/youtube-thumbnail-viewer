@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube-pienoiskuvien katselin",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Pienoiskuva",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Näyttää videon pienoiskuvan suoraan YouTuben kuvauksessa. Yksi vilkaisu, nolla kitkaa. Haluamasi kuva, juuri siellä missä olet.",
+    "description": "Extension Description"
+  }
+}

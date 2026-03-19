@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube തമ്പ്‌നെയിൽ വ്യൂവർ",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "തമ്പ്‌നെയിൽ",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "വീഡിയോയുടെ തമ്പ്‌നെയിൽ നേരിട്ട് YouTube വിവരണത്തിൽ കാണിക്കുന്നു. ഒരു നോക്ക്, ബുദ്ധിമുട്ടൊന്നുമില്ല. നിങ്ങൾക്ക് വേണ്ട ചിത്രം, നിങ്ങൾ ഉള്ളിടത്തുതന്നെ.",
+    "description": "Extension Description"
+  }
+}

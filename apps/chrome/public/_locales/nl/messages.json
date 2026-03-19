@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube-thumbnailviewer",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Thumbnail",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Toont de videominiatuur direct in de YouTube-beschrijving. Een blik, geen gedoe. De afbeelding die je wilt, precies waar je bent.",
+    "description": "Extension Description"
+  }
+}

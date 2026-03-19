@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Pregledovalnik sličic YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Sličica",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Prikaže sličico videoposnetka neposredno v opisu na YouTubu. En pogled, brez zapletov. Slika, ki jo želite, točno tam, kjer ste.",
+    "description": "Extension Description"
+  }
+}

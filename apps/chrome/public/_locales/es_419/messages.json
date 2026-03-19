@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Visor de miniaturas de YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatura",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Muestra la miniatura del video directamente en la descripción de YouTube. Una mirada, sin fricción. La imagen que quieres, justo donde estás.",
+    "description": "Extension Description"
+  }
+}

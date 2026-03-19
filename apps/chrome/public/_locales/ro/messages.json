@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Vizualizator de miniaturi YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatură",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Afișează miniatura videoclipului direct în descrierea YouTube. O privire, zero fricțiune. Imaginea pe care o vrei, chiar acolo unde ești.",
+    "description": "Extension Description"
+  }
+}

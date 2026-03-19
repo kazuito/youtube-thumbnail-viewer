@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Penampil Thumbnail YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Thumbnail",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Menampilkan thumbnail video langsung di deskripsi YouTube. Sekilas saja, tanpa repot. Gambar yang Anda inginkan, tepat di tempat Anda berada.",
+    "description": "Extension Description"
+  }
+}

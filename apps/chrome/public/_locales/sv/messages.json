@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube-miniatyrvisare",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatyr",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Visar videons miniatyr direkt i YouTube-beskrivningen. En blick, noll krångel. Bilden du vill ha, precis där du är.",
+    "description": "Extension Description"
+  }
+}

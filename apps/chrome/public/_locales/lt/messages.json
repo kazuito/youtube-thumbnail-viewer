@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube miniatiūrų peržiūros priemonė",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatiūra",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Rodo vaizdo įrašo miniatiūrą tiesiai YouTube aprašyme. Vienas žvilgsnis, jokio vargo. Norimas vaizdas ten, kur ir esi.",
+    "description": "Extension Description"
+  }
+}

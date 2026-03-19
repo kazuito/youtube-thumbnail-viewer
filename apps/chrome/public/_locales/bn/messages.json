@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "ইউটিউব থাম্বনেইল ভিউয়ার",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "থাম্বনেইল",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "ভিডিওর থাম্বনেইল সরাসরি YouTube বর্ণনায় দেখায়। এক নজরে, কোনও ঝামেলা নয়। আপনি যে ছবিটি চান, ঠিক সেখানেই।",
+    "description": "Extension Description"
+  }
+}

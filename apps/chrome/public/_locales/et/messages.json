@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube'i pisipildivaatur",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Pisipilt",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Kuvab video pisipildi otse YouTube'i kirjelduses. Üks pilk, null vaeva. Pilt, mida tahad, täpselt seal, kus oled.",
+    "description": "Extension Description"
+  }
+}

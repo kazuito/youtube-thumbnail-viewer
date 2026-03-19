@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube-bélyegkép megjelenítő",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Bélyegkép",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Közvetlenül a YouTube leírásában jeleníti meg a videó bélyegképét. Egy pillantás, nulla macera. A kép, amit akarsz, pontosan ott, ahol vagy.",
+    "description": "Extension Description"
+  }
+}

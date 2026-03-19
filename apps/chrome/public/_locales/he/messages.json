@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "מציג תמונות ממוזערות של YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "תמונה ממוזערת",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "מציג את התמונה הממוזערת של הסרטון ישירות בתיאור של YouTube. מבט אחד, בלי חיכוך. התמונה שרצית, בדיוק איפה שאתה.",
+    "description": "Extension Description"
+  }
+}

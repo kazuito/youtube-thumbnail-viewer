@@ -66,5 +66,6 @@ pnpm typecheck      # TypeScript check
 ## Notes
 
 - The extension relies on YouTube DOM selectors like `#description-inline-expander` and `#snippet`, so markup changes on YouTube can break injection.
+- Chrome Web Store metadata ships in 55 locales via `public/_locales/`.
 - Local build artifacts are generated under `.output/` and `.wxt/`.
 - The marketing website lives in `../website` and imports this package's version from `package.json` for the `/chrome` landing page.

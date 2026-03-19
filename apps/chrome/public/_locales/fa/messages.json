@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "نمایشگر تصویر بندانگشتی یوتیوب",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "بندانگشتی",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "تصویر بندانگشتی ویدیو را مستقیماً در توضیحات یوتیوب نشان می‌دهد. یک نگاه، بدون دردسر. تصویری که می‌خواهید، درست همان‌جا که هستید.",
+    "description": "Extension Description"
+  }
+}

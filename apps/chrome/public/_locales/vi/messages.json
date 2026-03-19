@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Trình xem hình thu nhỏ YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Hình thu nhỏ",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Hiển thị hình thu nhỏ của video ngay trong phần mô tả YouTube. Chỉ một cái nhìn, không rườm rà. Hình ảnh bạn muốn, ngay đúng chỗ bạn đang ở.",
+    "description": "Extension Description"
+  }
+}

@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "YouTube動画のサムネイル画像を概要欄に表示するよ。",
+    "message": "動画のサムネイルをYouTubeの概要欄にそのまま表示。一目でわかる、手間いらず。見たい画像が、ちょうどそこに。",
     "description": "Extension Description"
   }
 }

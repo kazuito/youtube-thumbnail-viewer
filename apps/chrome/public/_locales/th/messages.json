@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "ตัวดูภาพขนาดย่อ YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "ภาพขนาดย่อ",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "แสดงภาพขนาดย่อของวิดีโอในคำอธิบาย YouTube โดยตรง เห็นได้ทันที ไม่ยุ่งยาก รูปภาพที่คุณต้องการ อยู่ตรงที่คุณอยู่เลย",
+    "description": "Extension Description"
+  }
+}

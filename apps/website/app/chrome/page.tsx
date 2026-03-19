@@ -14,6 +14,10 @@ import { FeaturesSection } from "./_components/features-section";
 import { HeroSection } from "./_components/hero-section";
 import { HowItWorksSection } from "./_components/how-it-works-section";
 import { ReviewsSection } from "./_components/reviews-section";
+import {
+  SUPPORTED_CHROME_LOCALE_COUNT,
+  SUPPORTED_CHROME_LOCALES,
+} from "./locales";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -34,22 +38,18 @@ const jsonLd = {
     url: "https://github.com/kazuito",
   },
   softwareVersion: chromePackage.version,
-  ...(env.CHROME_STORE_RATING_VALUE && env.CHROME_STORE_RATING_COUNT
-    ? {
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: env.CHROME_STORE_RATING_VALUE,
-          ratingCount: env.CHROME_STORE_RATING_COUNT,
-          bestRating: "5",
-          worstRating: "1",
-        },
-      }
-    : {}),
-  inLanguage: ["en", "ar", "de", "es", "fr", "hi", "it", "ja", "ko"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: env.CHROME_STORE_RATING_VALUE,
+    ratingCount: env.CHROME_STORE_RATING_COUNT,
+    bestRating: "5",
+    worstRating: "1",
+  },
+  inLanguage: SUPPORTED_CHROME_LOCALES,
   featureList: [
     "View YouTube thumbnails inline",
     "Automatic highest resolution selection",
-    "9 languages supported",
+    `${SUPPORTED_CHROME_LOCALE_COUNT} locales supported`,
   ],
 };
 

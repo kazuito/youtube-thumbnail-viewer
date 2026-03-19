@@ -8,7 +8,7 @@
     "description": "Extension Short-Name"
   },
   "extDescription": {
-    "message": "Zeigt ein Thumbnail-Bild im Beschreibungsbereich auf YouTube an.",
+    "message": "Zeigt das Video-Thumbnail direkt in der YouTube-Beschreibung an. Ein Blick, null Aufwand. Das Bild, das du willst, genau dort, wo du bist.",
     "description": "Extension Description"
   }
 }

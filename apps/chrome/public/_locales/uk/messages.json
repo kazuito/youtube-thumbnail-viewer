@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Переглядач мініатюр YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Мініатюра",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Показує мініатюру відео прямо в описі YouTube. Один погляд, жодного клопоту. Потрібне зображення саме там, де ви є.",
+    "description": "Extension Description"
+  }
+}

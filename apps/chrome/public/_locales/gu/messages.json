@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "યૂટ્યુબ થંબનેલ વ્યૂઅર",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "થંબનેલ",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "વિડિયોની થંબનેલ સીધી YouTube વર્ણનમાં બતાવે છે. એક નજર, કોઈ ઝંઝટ નહીં. તમને જોઈએ તેવી છબી, બરાબર ત્યાં જ.",
+    "description": "Extension Description"
+  }
+}

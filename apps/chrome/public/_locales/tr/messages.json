@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube Küçük Resim Görüntüleyici",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Küçük resim",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Video küçük resmini doğrudan YouTube açıklamasında gösterir. Tek bakış, sıfır sürtünme. İstediğiniz görsel, tam bulunduğunuz yerde.",
+    "description": "Extension Description"
+  }
+}

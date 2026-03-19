@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "Przeglądarka miniatur YouTube",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Miniatura",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Wyświetla miniaturę filmu bezpośrednio w opisie YouTube. Jedno spojrzenie, zero tarcia. Obraz, którego chcesz, dokładnie tam, gdzie jesteś.",
+    "description": "Extension Description"
+  }
+}

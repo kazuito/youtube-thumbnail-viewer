@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube Thumbnail Viewer",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Thumbnail",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Shows the video thumbnail directly in the YouTube description. One glance, zero friction. The image you want, right where you are.",
+    "description": "Extension Description"
+  }
+}

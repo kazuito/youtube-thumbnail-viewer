@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YouTube sīktēlu skatītājs",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "Sīktēls",
+    "description": "Extension Short-Name"
+  },
+  "extDescription": {
+    "message": "Parāda video sīktēlu tieši YouTube aprakstā. Viens skatiens, nekādas berzes. Attēls, ko vēlies, tieši tur, kur esi.",
+    "description": "Extension Description"
+  }
+}
