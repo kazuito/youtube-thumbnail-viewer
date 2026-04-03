@@ -53,8 +53,11 @@ test.describe("YouTube Thumbnail Viewer Extension", () => {
     await page.goto(SEARCH_RESULT_URL);
     await expect(page.locator(containerTagName)).toHaveCount(0);
 
-    const link = page.locator("#contents a#thumbnail").first();
-    await link.click();
-    await expect(page.locator(containerTagName)).toBeVisible();
+    const link = page.locator('ytd-video-renderer a#thumbnail[href^="/watch?v="]').first();
+    await Promise.all([
+      page.waitForURL(/\/watch\?v=/, { timeout: 15_000 }),
+      link.click(),
+    ]);
+    await expect(page.locator(selectors.anchor)).toBeVisible();
   });
 });
