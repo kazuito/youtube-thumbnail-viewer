@@ -8,6 +8,8 @@
 		"format": "pnpm -r format",
 		"typecheck": "pnpm -r typecheck",
 		"check": "pnpm -r check",
+		"test": "pnpm -r test",
+		"test:e2e": "pnpm -r test:e2e",
 		"prepare": "husky"
 	},
 	"keywords": [],

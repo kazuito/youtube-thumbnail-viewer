@@ -1,2 +1,2 @@
-pnpm -r lint
-pnpm -r typecheck
+pnpm lint
+pnpm typecheck

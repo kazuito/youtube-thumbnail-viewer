@@ -31,11 +31,11 @@ jobs:
       - name: Run typecheck
         run: pnpm typecheck
 
-      - name: Run unit tests
-        run: pnpm --filter chrome test
+      - name: Build apps
+        run: pnpm build
 
-      - name: Build Chrome extension
-        run: pnpm --filter chrome build
+      - name: Run unit tests
+        run: pnpm test
 
       - name: Install Playwright Chromium
         run: pnpm --filter chrome exec playwright install --with-deps chromium
