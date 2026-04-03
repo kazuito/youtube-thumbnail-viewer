@@ -15,6 +15,7 @@ export default defineConfig({
     : "list",
   use: {
     headless: false,
+    screenshot: "only-on-failure",
   },
   // Chrome extensions cannot run in true headless mode; CI uses xvfb instead
   workers: 1,

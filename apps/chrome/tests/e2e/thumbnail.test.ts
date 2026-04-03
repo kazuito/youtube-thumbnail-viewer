@@ -58,6 +58,11 @@ test.describe("YouTube Thumbnail Viewer Extension", () => {
       page.waitForURL(/\/watch\?v=/, { timeout: 15_000 }),
       link.click(),
     ]);
-    await expect(page.locator(selectors.anchor)).toBeVisible();
+    await expect(page.locator("#description-inline-expander")).toBeVisible({
+      timeout: 15_000,
+    });
+    await expect(page.locator(selectors.anchor)).toBeVisible({
+      timeout: 15_000,
+    });
   });
 });
