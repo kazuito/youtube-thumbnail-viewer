@@ -3,7 +3,7 @@ import { expect, test } from "./fixtures";
 
 const WATCH_URL = "https://www.youtube.com/watch?v=LmZD-TU96q4";
 const HOME_URL = "https://www.youtube.com/";
-const SEARCH_RESULT_URL = "https://www.youtube.com/results?search_query=lemon";
+const SEARCH_RESULT_URL = "https://www.youtube.com/results?search_query=Kenshi+Yonezu+Lemon+Music+Video";
 
 test.describe("YouTube Thumbnail Viewer Extension", () => {
   test("injects thumbnail on watch page", async ({ page }) => {
@@ -53,7 +53,11 @@ test.describe("YouTube Thumbnail Viewer Extension", () => {
     await page.goto(SEARCH_RESULT_URL);
     await expect(page.locator(containerTagName)).toHaveCount(0);
 
-    const link = page.locator('ytd-video-renderer a#thumbnail[href^="/watch?v="]').first();
+    const link = page
+      .locator(
+        'ytd-video-renderer a#video-title[href^="/watch?v="]:not([href*="&list="])',
+      )
+      .first();
     await Promise.all([
       page.waitForURL(/\/watch\?v=/, { timeout: 15_000 }),
       link.click(),
