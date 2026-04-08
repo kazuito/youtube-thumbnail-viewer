@@ -3,8 +3,7 @@ import { expect, test } from "./fixtures";
 
 const WATCH_URL = "https://www.youtube.com/watch?v=LmZD-TU96q4";
 const HOME_URL = "https://www.youtube.com/";
-const SEARCH_RESULT_URL =
-  "https://www.youtube.com/results?search_query=Kenshi+Yonezu+Lemon+Music+Video";
+// const SEARCH_RESULT_URL = "https://www.youtube.com/results?search_query=Kenshi+Yonezu+Lemon+Music+Video";
 
 test.describe("YouTube Thumbnail Viewer Extension", () => {
   test("injects thumbnail on watch page", async ({ page }) => {
