@@ -1,8 +1,8 @@
 "use client";
 
+import { AnimatePresence } from "motion/react";
 import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import { parseVideoId } from "@/lib/youtube";
 import { ExampleVideos } from "./example-videos";
 import { HeroSection } from "./hero-section";
@@ -37,7 +37,20 @@ export function ThumbnailViewer() {
 
   return (
     <div className="flex flex-col gap-8">
-      <HeroSection className={cn(videoId && "hidden")} />
+      <AnimatePresence mode="popLayout">
+        {!videoId && (
+          <HeroSection
+            layout
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={{
+              hidden: { scale: 0.9, height: 0 },
+              visible: { scale: 1, y: 0, height: "auto" },
+            }}
+          />
+        )}
+      </AnimatePresence>
       <UrlInput
         value={value}
         onChange={(value) => {
