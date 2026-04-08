@@ -1,6 +1,17 @@
-export function HeroSection() {
+import { cn } from "@/lib/utils";
+
+export function HeroSection({
+  className,
+  ...props
+}: React.ComponentProps<"section">) {
   return (
-    <section className="py-8 flex flex-col items-center text-center gap-4">
+    <section
+      className={cn(
+        "py-8 flex flex-col items-center text-center gap-4",
+        className,
+      )}
+      {...props}
+    >
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-balance">
         YouTube Thumbnail <span className="text-muted-foreground">Viewer</span>
       </h1>

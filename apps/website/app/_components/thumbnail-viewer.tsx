@@ -2,6 +2,7 @@
 
 import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 import { parseVideoId } from "@/lib/youtube";
 import { ExampleVideos } from "./example-videos";
 import { HeroSection } from "./hero-section";
@@ -31,12 +32,12 @@ export function ThumbnailViewer() {
 
   useEffect(() => {
     if (!videoId) return;
-    window.scrollTo({ top: 220, behavior: "smooth" });
+    scrollTo({ top: 0, behavior: "smooth" });
   }, [videoId]);
 
   return (
     <div className="flex flex-col gap-8">
-      <HeroSection />
+      <HeroSection className={cn(videoId && "hidden")} />
       <UrlInput
         value={value}
         onChange={(value) => {
