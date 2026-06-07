@@ -1,12 +1,11 @@
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export function HeroSection({
   className,
   ...props
-}: React.ComponentProps<typeof motion.section>) {
+}: React.ComponentProps<"section">) {
   return (
-    <motion.section
+    <section
       className={cn(
         "py-8 flex flex-col items-center text-center gap-4",
         className,
@@ -20,6 +19,6 @@ export function HeroSection({
         Paste any YouTube URL or video ID to instantly view and download
         thumbnails in every available resolution.
       </p>
-    </motion.section>
+    </section>
   );
 }

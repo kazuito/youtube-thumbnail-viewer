@@ -37,20 +37,7 @@ export function ThumbnailViewer() {
 
   return (
     <div className="flex flex-col gap-8">
-      <AnimatePresence mode="popLayout">
-        {!videoId && (
-          <HeroSection
-            layout
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={{
-              hidden: { scale: 0.9, height: 0 },
-              visible: { scale: 1, y: 0, height: "auto" },
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {!videoId && <HeroSection />}
       <UrlInput
         value={value}
         onChange={(value) => {

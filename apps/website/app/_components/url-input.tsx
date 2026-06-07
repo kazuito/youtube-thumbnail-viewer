@@ -2,7 +2,6 @@
 
 import {
   ArrowLeftIcon,
-  ClipboardIcon,
   CopyIcon,
   CornerDownLeftIcon,
   EllipsisIcon,
@@ -58,29 +57,6 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
 
   return (
     <div className="flex gap-2">
-      {videoId && (
-        <Button variant="outline" size="icon" onClick={() => onChange("")}>
-          <ArrowLeftIcon />
-        </Button>
-      )}
-      <Button
-        onClick={async () => {
-          const text = await navigator.clipboard.readText();
-          if (!text) {
-            toast.info("Nothing to paste", {
-              id: "clipboard-empty",
-              description: "Your clipboard is empty.",
-            });
-            return;
-          }
-          onChange(text);
-        }}
-        variant="secondary"
-        size="lg"
-      >
-        <ClipboardIcon />
-        Paste
-      </Button>
       <InputGroup className="h-9">
         <InputGroupInput
           value={value}

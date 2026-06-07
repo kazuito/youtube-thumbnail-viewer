@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main>
-      <div className="max-w-4xl mx-auto px-6 py-10 pb-20">
+      <div className="max-w-4xl mx-auto px-6 py-10 pb-20 min-h-dvh">
         <Suspense>
           <ThumbnailViewer />
         </Suspense>
