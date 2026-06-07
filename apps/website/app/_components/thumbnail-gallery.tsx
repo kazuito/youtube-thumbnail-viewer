@@ -34,12 +34,14 @@ function ThumbnailCard({
   label,
   width,
   height,
+  index,
 }: {
   videoId: string;
   name: string;
   label: string;
   width: number;
   height: number;
+  index: number;
 }) {
   const [hidden, setHidden] = useState(false);
   const url = `https://img.youtube.com/vi/${videoId}/${name}.jpg`;
@@ -85,7 +87,12 @@ function ThumbnailCard({
   };
 
   return (
-    <div className="flex flex-col gap-1.5 group/card">
+    <div
+      className="flex flex-col gap-1.5 starting:opacity-0 transition-all duration-300 starting:translate-y-2"
+      style={{
+        transitionDelay: `${index * 30}ms`,
+      }}
+    >
       <a
         href={url}
         target="_blank"
@@ -111,17 +118,14 @@ function ThumbnailCard({
           <Button
             variant="ghost"
             onClick={handleDownload}
-            className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8"
+            className="sm:size-8"
           >
             <DownloadIcon />
             <span className="sm:sr-only">Download</span>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="sm:opacity-0 group-hover/card:opacity-100 transition-opacity sm:size-8 data-open:opacity-100"
-              >
+              <Button variant="ghost" className="sm:size-8">
                 <CopyIcon />
                 <span className="sm:sr-only">Copy</span>
               </Button>
@@ -151,9 +155,9 @@ export function ThumbnailGallery({ videoId }: ThumbnailGalleryProps) {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-sm font-medium text-muted-foreground">Thumbnails</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {THUMBNAILS.map((t) => (
-          <ThumbnailCard key={t.name} videoId={videoId} {...t} />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4" key={videoId}>
+        {THUMBNAILS.map((t, index) => (
+          <ThumbnailCard key={t.name} videoId={videoId} {...t} index={index} />
         ))}
       </div>
     </div>

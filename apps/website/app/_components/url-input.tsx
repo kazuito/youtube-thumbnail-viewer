@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  ArrowLeftIcon,
-  CopyIcon,
-  CornerDownLeftIcon,
-  EllipsisIcon,
-  ExternalLinkIcon,
-  XIcon,
-} from "lucide-react";
+import { CopyIcon, EllipsisIcon, ExternalLinkIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -72,10 +65,6 @@ export function UrlInput({ value, onChange }: UrlInputProps) {
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
-      <Button size="lg" onClick={() => onChange(value)}>
-        Submit
-        <CornerDownLeftIcon className="opacity-80" />
-      </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon-lg" disabled={!videoId}>

@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence } from "motion/react";
 import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { parseVideoId } from "@/lib/youtube";
