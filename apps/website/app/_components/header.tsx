@@ -1,9 +1,9 @@
 "use client";
 
-import { ChromeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChromeIcon } from "@/components/icons/chrome-icon";
 import { Button } from "@/components/ui/button";
 import { CHROME_STORE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";

@@ -1,5 +1,6 @@
-import { ChromeIcon, ExternalLink, Star } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
 import Link from "next/link";
+import { ChromeIcon } from "@/components/icons/chrome-icon";
 import { Button } from "@/components/ui/button";
 import { env } from "@/lib/env";
 import { CHROME_STORE_URL } from "@/lib/site";
