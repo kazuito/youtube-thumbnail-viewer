@@ -14,7 +14,7 @@ const { createIntegratedUi } = await import(
 const fakeContext = {} as ContentScriptContext;
 
 function setupExistingThumbnail(src: string) {
-  const container = document.createElement("ytv-thumbnail-preview" as any);
+  const container = document.createElement("ytv-thumbnail-preview");
   const anchor = document.createElement("a");
   anchor.className = "ytv-anchor";
   const image = document.createElement("img");
@@ -51,7 +51,7 @@ describe("updateThumbnail()", () => {
     vi.stubGlobal("alert", vi.fn());
     vi.mocked(createIntegratedUi).mockReturnValue({
       autoMount: vi.fn(),
-    } as any);
+    } as unknown as ReturnType<typeof createIntegratedUi>);
   });
 
   afterEach(() => {
