@@ -1,7 +1,8 @@
 import { env } from "@/lib/env";
 
-export const SITE_URL =
-  env.NEXT_PUBLIC_SITE_URL ?? "https://youtubethumbnailviewer.vercel.app/";
+export const SITE_URL = (
+  env.NEXT_PUBLIC_SITE_URL ?? "https://youtubethumbnailviewer.vercel.app"
+).replace(/\/$/, "");
 
 export const SITE_NAME = "YouTube Thumbnail Viewer";
 

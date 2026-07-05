@@ -12,7 +12,8 @@ export function FaqSection() {
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
         <p className="text-muted-foreground">
-          Everything you need to know about the extension.
+          Everything you need to know about viewing and downloading YouTube
+          thumbnails.
         </p>
       </div>
       <Accordion type="single" collapsible>

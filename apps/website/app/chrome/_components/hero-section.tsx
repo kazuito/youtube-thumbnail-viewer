@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 
 export function HeroSection({
   className,
+  titleAs: TitleTag = "h1",
   ...props
-}: React.ComponentProps<"section">) {
+}: React.ComponentProps<"section"> & { titleAs?: "h1" | "h2" }) {
   return (
     <section
       className={cn(
@@ -25,10 +26,10 @@ export function HeroSection({
         >
           <ChromeIcon className="size-32 rotate-full" />
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
+        <TitleTag className="text-3xl font-bold tracking-tight sm:text-5xl text-balance">
           See the thumbnail,{" "}
           <span className="text-muted-foreground">without leaving YouTube</span>
-        </h1>
+        </TitleTag>
       </div>
       <p className="max-w-xl text-muted-foreground text-lg leading-snug text-balance">
         A lightweight Chrome extension that displays a video's thumbnail

@@ -31,23 +31,31 @@ app/
 │   ├── thumbnail-gallery.tsx# Grid of all thumbnail resolutions; hides missing via onError
 │   ├── video-embed.tsx      # YouTube <iframe> embed (16:9)
 │   ├── hero-section.tsx     # Hero used on / (shared with /chrome page)
+│   ├── how-to-section.tsx   # "How to download a thumbnail" steps on /
+│   ├── resolutions-section.tsx # Table of all thumbnail resolutions on /
+│   ├── faq-section.tsx      # Viewer tool FAQ accordion on /
 │   └── example-videos.tsx   # Example video suggestion cards shown when input is empty
+├── _lib/                    # / route constants: metadata, FAQ/steps/resolutions data, JSON-LD objects
 ├── chrome/
 │   ├── page.tsx             # Chrome extension landing page with JSON-LD structured data
-│   └── _components/
-│       ├── hero-section.tsx
-│       ├── features-section.tsx
-│       ├── how-it-works-section.tsx
-│       ├── reviews-section.tsx
-│       └── faq-section.tsx
+│   ├── _components/
+│   │   ├── hero-section.tsx
+│   │   ├── features-section.tsx
+│   │   ├── how-it-works-section.tsx
+│   │   ├── reviews-section.tsx
+│   │   └── faq-section.tsx
+│   └── _lib/                # /chrome route constants: metadata, locales, FAQ/features/reviews/steps data, JSON-LD objects
 ├── layout.tsx               # Root layout: fonts, metadata, NuqsAdapter, GA, Toaster
 ├── page.tsx                 # / route
-├── opengraph-image.tsx      # Auto-generated OG image (1200×630)
+├── opengraph-image.png      # OG image (1280×800) + opengraph-image.alt.txt
 ├── sitemap.ts               # /sitemap.xml
 └── robots.ts                # /robots.txt
+components/
+└── json-ld.tsx              # Generic <JsonLd data={...}> script tag renderer
 lib/
 ├── site.ts                  # SITE_URL, SITE_NAME, SITE_DESCRIPTION, CHROME_STORE_URL
 ├── env.ts                   # Type-safe env vars via @t3-oss/env-nextjs
+├── json-ld.ts               # buildFaqJsonLd() helper
 ├── examples.ts              # Example video list for the URL input suggestions
 └── utils.ts                 # cn() helper
 ```
@@ -55,9 +63,11 @@ lib/
 ## SEO
 
 - Per-page `metadata` exports with canonical URLs, OpenGraph, and Twitter Card
-- `opengraph-image.tsx` generates the shared OG image at build time
+- `app/opengraph-image.png` is served as the shared OG image for all routes
 - `sitemap.ts` covers `/` and `/chrome`
-- JSON-LD structured data (SoftwareApplication + FAQ) on `/chrome`
+- JSON-LD structured data: WebApplication + FAQPage on `/`, SoftwareApplication + FAQPage on `/chrome`, rendered via `components/json-ld.tsx`
+- `SITE_URL` is normalized (no trailing slash) in `lib/site.ts`; join paths with a leading `/`
+- Route-level constants (page titles/descriptions, section data, JSON-LD objects) live in each route's `_lib/` directory, separate from components
 
 ## Commands
 

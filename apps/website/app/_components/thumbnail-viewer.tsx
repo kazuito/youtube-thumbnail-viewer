@@ -36,7 +36,11 @@ export function ThumbnailViewer() {
 
   return (
     <div className="flex flex-col gap-8">
-      {!videoId && <HeroSection />}
+      {videoId ? (
+        <h1 className="sr-only">YouTube Thumbnail Viewer</h1>
+      ) : (
+        <HeroSection />
+      )}
       <UrlInput
         value={value}
         onChange={(value) => {
