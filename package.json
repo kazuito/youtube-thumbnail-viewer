@@ -1,24 +1,24 @@
 {
-	"name": "youtube-thumbnail-viewer",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"lint": "pnpm -r lint",
-		"format": "pnpm -r format",
-		"typecheck": "pnpm -r typecheck",
-		"check": "pnpm -r check",
-		"build": "pnpm -r build",
-		"test": "pnpm -r test",
-		"test:e2e": "pnpm -r test:e2e",
-		"prepare": "husky"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"packageManager": "pnpm@10.32.1",
-	"devDependencies": {
-		"@biomejs/biome": "^2.5.2",
-		"husky": "^9.1.7"
-	}
+  "name": "youtube-thumbnail-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "typecheck": "pnpm -r typecheck",
+    "check": "pnpm -r check",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm -r test:e2e",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.2",
+    "husky": "^9.1.7"
+  }
 }
