@@ -43,8 +43,8 @@ export async function updateThumbnail(
   }
 
   if (anchor && image) {
+    // Thumbnail is already up to date.
     if (image.getAttribute("src") === newImageUrl) {
-      alert("Thumbnail is already up to date.");
       return;
     }
 
