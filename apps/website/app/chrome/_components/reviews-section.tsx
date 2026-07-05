@@ -1,5 +1,4 @@
-import { LanguagesIcon, ShuffleIcon, Star } from "lucide-react";
-import { div } from "motion/react-client";
+import { ShuffleIcon, Star } from "lucide-react";
 import Link from "next/link";
 
 const reviews = [

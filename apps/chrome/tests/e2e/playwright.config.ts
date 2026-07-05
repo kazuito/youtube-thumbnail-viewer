@@ -10,9 +10,7 @@ export const extensionPath = path.resolve(
 
 export default defineConfig({
   testDir: ".",
-  reporter: process.env.CI
-    ? [["dot"], ["html", { open: "never" }]]
-    : "list",
+  reporter: process.env.CI ? [["dot"], ["html", { open: "never" }]] : "list",
   use: {
     headless: false,
     screenshot: "only-on-failure",
