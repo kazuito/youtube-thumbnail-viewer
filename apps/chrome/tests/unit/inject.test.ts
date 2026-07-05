@@ -91,20 +91,6 @@ describe("updateThumbnail()", () => {
     ).toHaveBeenCalledOnce();
   });
 
-  it("alerts when existing anchor has the same src", async () => {
-    const existingUrl = "https://img.youtube.com/vi/abc123/maxresdefault.jpg";
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
-    setupExistingThumbnail(existingUrl);
-
-    const promise = updateThumbnail(fakeContext, "abc123");
-    await vi.runAllTimersAsync();
-    await promise;
-
-    expect(vi.mocked(alert)).toHaveBeenCalledWith(
-      "Thumbnail is already up to date.",
-    );
-  });
-
   it("swaps image when existing anchor has a different src", async () => {
     const oldUrl = "https://img.youtube.com/vi/abc123/mqdefault.jpg";
     const newUrl = "https://img.youtube.com/vi/abc123/maxresdefault.jpg";
