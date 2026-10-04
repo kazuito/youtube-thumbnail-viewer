@@ -11,13 +11,13 @@
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "test:e2e": "pnpm -r test:e2e",
-    "prepare": "husky"
+    "postinstall": "lefthook install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
-    "husky": "^9.1.7"
+    "lefthook": "^2.1.16"
   }
 }

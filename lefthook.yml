@@ -1,0 +1,22 @@
+pre-commit:
+  commands:
+    format:
+      run: pnpm exec biome format --write --no-errors-on-unmatched {staged_files}
+      stage_fixed: true
+    lint:
+      run: pnpm lint
+    typecheck:
+      run: pnpm typecheck
+
+pre-push:
+  commands:
+    lint:
+      run: pnpm lint
+    typecheck:
+      run: pnpm typecheck
+    build:
+      run: pnpm build
+    test:
+      run: pnpm test
+    test-e2e:
+      run: pnpm test:e2e
