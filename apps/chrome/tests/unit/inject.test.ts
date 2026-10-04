@@ -87,7 +87,7 @@ describe("updateThumbnail()", () => {
 
     expect(createIntegratedUi).toHaveBeenCalledOnce();
     expect(
-      vi.mocked(createIntegratedUi).mock.results[0].value.autoMount,
+      vi.mocked(createIntegratedUi).mock.results[0]?.value.autoMount,
     ).toHaveBeenCalledOnce();
   });
 
