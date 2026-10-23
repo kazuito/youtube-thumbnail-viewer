@@ -14,9 +14,9 @@ Marketing website and online thumbnail viewer tool.
 
 ## Routes
 
-| Route | File | Description |
-|---|---|---|
-| `/` | `app/page.tsx` | Online thumbnail viewer tool |
+| Route     | File                  | Description                   |
+| --------- | --------------------- | ----------------------------- |
+| `/`       | `app/page.tsx`        | Online thumbnail viewer tool  |
 | `/chrome` | `app/chrome/page.tsx` | Chrome extension landing page |
 
 ## Project Structure
@@ -80,9 +80,9 @@ pnpm lint        # Biome check
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | No | Production URL (defaults to Vercel URL) |
-| `NEXT_PUBLIC_GA_ID` | No | Google Analytics measurement ID |
-| `CHROME_STORE_RATING_VALUE` | No | Rating value for JSON-LD structured data |
-| `CHROME_STORE_RATING_COUNT` | No | Rating count for JSON-LD structured data |
+| Variable                    | Required | Description                              |
+| --------------------------- | -------- | ---------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`      | No       | Production URL (defaults to Vercel URL)  |
+| `NEXT_PUBLIC_GA_ID`         | No       | Google Analytics measurement ID          |
+| `CHROME_STORE_RATING_VALUE` | No       | Rating value for JSON-LD structured data |
+| `CHROME_STORE_RATING_COUNT` | No       | Rating count for JSON-LD structured data |
