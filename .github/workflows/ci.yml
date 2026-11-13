@@ -41,11 +41,11 @@ jobs:
 
       - name: Build and validate Firefox extension
         run: |
-          pnpm --filter chrome build:firefox
-          pnpm --filter chrome lint:firefox
+          pnpm --filter browser build:firefox
+          pnpm --filter browser lint:firefox
 
       - name: Package extensions and verify Firefox source rebuild
         run: |
-          pnpm --filter chrome zip
-          pnpm --filter chrome zip:firefox
-          pnpm --filter chrome verify:packages
+          pnpm --filter browser zip
+          pnpm --filter browser zip:firefox
+          pnpm --filter browser verify:packages

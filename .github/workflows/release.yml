@@ -3,8 +3,8 @@ name: Release
 on:
   push:
     tags:
-      - '[0-9]*.[0-9]*.[0-9]*'
-      - 'v[0-9]*.[0-9]*.[0-9]*'
+      - "[0-9]*.[0-9]*.[0-9]*"
+      - "v[0-9]*.[0-9]*.[0-9]*"
 
 permissions:
   contents: write
@@ -28,7 +28,7 @@ jobs:
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import { readFileSync } from 'node:fs';
-          const { version } = JSON.parse(readFileSync('apps/chrome/package.json', 'utf8'));
+          const { version } = JSON.parse(readFileSync('apps/browser/package.json', 'utf8'));
           assert.equal(process.env.RELEASE_TAG.replace(/^v/, ''), version);
           NODE
 
@@ -48,23 +48,23 @@ jobs:
 
       - name: Check extension
         run: |
-          pnpm --filter chrome lint
-          pnpm --filter chrome typecheck
-          pnpm --filter chrome test
+          pnpm --filter browser lint
+          pnpm --filter browser typecheck
+          pnpm --filter browser test
 
       - name: Package extensions
         run: |
-          pnpm --filter chrome zip
-          pnpm --filter chrome zip:firefox
-          pnpm --filter chrome lint:firefox
-          pnpm --filter chrome verify:packages
+          pnpm --filter browser zip
+          pnpm --filter browser zip:firefox
+          pnpm --filter browser lint:firefox
+          pnpm --filter browser verify:packages
 
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          gh release create "$RELEASE_TAG" apps/chrome/.output/*.zip \
+          gh release create "$RELEASE_TAG" apps/browser/.output/youtube-thumbnail-viewer-*.zip \
             --verify-tag \
             --title "$RELEASE_TAG" \
             --generate-notes

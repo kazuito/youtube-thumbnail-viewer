@@ -50,7 +50,7 @@ wxt.config.ts           WXT config and manifest settings
 
 ## Commands
 
-Run these from `apps/chrome` or from the repo root with `pnpm --filter chrome ...`.
+Run these from `apps/browser` or from the repo root with `pnpm --filter browser ...`.
 
 ```bash
 pnpm dev            # Launch Chromium dev mode with WXT
@@ -74,11 +74,14 @@ pnpm verify:packages # Check manifests and rebuild Firefox from sources (build/z
 
 ## GitHub Releases
 
-Push a version tag matching `apps/chrome/package.json` (for example, `0.0.8`
+Push a version tag matching `apps/browser/package.json` (for example, `0.0.8`
 or `v0.0.8`) to create a GitHub Release automatically. The release workflow
 runs extension lint, type checks, unit tests, Firefox validation, and the
 source rebuild check before publishing. It attaches the Chrome ZIP, Firefox
 ZIP, and Firefox review source ZIP, with automatically generated release notes.
+ZIP filenames use `youtube-thumbnail-viewer-<version>-chrome.zip`,
+`youtube-thumbnail-viewer-<version>-firefox.zip`, and
+`youtube-thumbnail-viewer-<version>-sources.zip`.
 Store submission and Firefox signing remain separate steps.
 
 ## Firefox testing and distribution
@@ -92,8 +95,8 @@ choose **Load Temporary Add-on**, and select `.output/firefox-mv3/manifest.json`
 Allow the extension access to YouTube. Test initial load, watch-to-watch
 navigation, home-to-watch navigation, back/forward, and opening the preview.
 
-`pnpm zip:firefox` creates `.output/chrome-<version>-firefox.zip` and
-`.output/chrome-<version>-sources.zip`. Submit both to Mozilla Add-ons (AMO),
+`pnpm zip:firefox` creates `.output/youtube-thumbnail-viewer-<version>-firefox.zip` and
+`.output/youtube-thumbnail-viewer-<version>-sources.zip`. Submit both to Mozilla Add-ons (AMO),
 with the build instructions in [SOURCE_CODE_REVIEW.md](SOURCE_CODE_REVIEW.md).
 AMO signing is required for normal distribution. The extension ID is
 `youtube-thumbnail-viewer@kazuito`; keep it stable across releases.

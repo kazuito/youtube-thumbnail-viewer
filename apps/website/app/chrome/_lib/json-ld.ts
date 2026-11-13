@@ -1,7 +1,7 @@
 import { env } from "@/lib/env";
 import { buildFaqJsonLd } from "@/lib/json-ld";
 import { CHROME_STORE_URL, SITE_NAME } from "@/lib/site";
-import chromePackage from "../../../../chrome/package.json";
+import browserPackage from "../../../../browser/package.json";
 import { FAQS } from "./faqs";
 import {
   SUPPORTED_CHROME_LOCALE_COUNT,
@@ -27,7 +27,7 @@ export const SOFTWARE_APPLICATION_JSON_LD = {
     name: "Kazuma Ito",
     url: "https://github.com/kazuito",
   },
-  softwareVersion: chromePackage.version,
+  softwareVersion: browserPackage.version,
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: env.CHROME_STORE_RATING_VALUE,

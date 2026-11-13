@@ -28,20 +28,24 @@ export default defineConfig({
       : {}),
   }),
   zip: {
+    artifactTemplate:
+      "youtube-thumbnail-viewer-{{packageVersion}}-{{browser}}{{modeSuffix}}.zip",
+    sourcesTemplate:
+      "youtube-thumbnail-viewer-{{packageVersion}}-sources{{modeSuffix}}.zip",
     sourcesRoot: fileURLToPath(new URL("../../", import.meta.url)),
     includeSources: [
       "package.json",
       "pnpm-lock.yaml",
       "pnpm-workspace.yaml",
-      "apps/chrome/package.json",
-      "apps/chrome/wxt.config.ts",
-      "apps/chrome/tsconfig.json",
-      "apps/chrome/README.md",
-      "apps/chrome/SOURCE_CODE_REVIEW.md",
-      "apps/chrome/entrypoints/**",
-      "apps/chrome/lib/**",
-      "apps/chrome/assets/**",
-      "apps/chrome/public/**",
+      "apps/browser/package.json",
+      "apps/browser/wxt.config.ts",
+      "apps/browser/tsconfig.json",
+      "apps/browser/README.md",
+      "apps/browser/SOURCE_CODE_REVIEW.md",
+      "apps/browser/entrypoints/**",
+      "apps/browser/lib/**",
+      "apps/browser/assets/**",
+      "apps/browser/public/**",
     ],
   },
 });

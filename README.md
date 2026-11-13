@@ -1,1 +1,1 @@
-apps/chrome/README.md
+apps/browser/README.md

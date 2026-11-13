@@ -8,11 +8,11 @@ From the root of the extracted source archive:
 
 ```sh
 pnpm install --frozen-lockfile --ignore-scripts
-pnpm --filter chrome exec wxt prepare
-pnpm --filter chrome build:firefox
+pnpm --filter browser exec wxt prepare
+pnpm --filter browser build:firefox
 ```
 
-The production extension is in `apps/chrome/.output/firefox-mv3`.
+The production extension is in `apps/browser/.output/firefox-mv3`.
 No credentials, environment files, private packages, or remote build services
 are required. Lifecycle scripts are skipped to avoid installing Git hooks in
 the review archive; WXT type generation is run explicitly instead.

@@ -1,23 +1,23 @@
 # YouTube Thumbnail Viewer
 
-Monorepo containing the Chrome extension and its marketing website.
+Monorepo containing the browser extension and its marketing website.
 
 ## Workspace
 
 - Package manager: `pnpm`
 - Workspace pattern: `apps/*`
 - Main apps:
-  - `apps/chrome`: WXT-based browser extension
+  - `apps/browser`: WXT-based browser extension
   - `apps/website`: Next.js 16 marketing site and online thumbnail viewer
 
 ## Documentation Layout
 
-- Root `README.md` is a symlink to `apps/chrome/README.md`
-- Chrome extension docs live in `apps/chrome/README.md`
+- Root `README.md` is a symlink to `apps/browser/README.md`
+- Browser extension docs live in `apps/browser/README.md`
 - Website docs live in `apps/website/README.md`
 - Keep these docs aligned with code changes when behavior, scripts, or structure changes
 
-## `apps/chrome`
+## `apps/browser`
 
 - Framework: [WXT](https://wxt.dev/)
 - Language: TypeScript
@@ -71,10 +71,10 @@ From the repo root:
 
 ```bash
 pnpm install
-pnpm --filter chrome dev
-pnpm --filter chrome build
-pnpm --filter chrome zip
-pnpm --filter chrome typecheck
+pnpm --filter browser dev
+pnpm --filter browser build
+pnpm --filter browser zip
+pnpm --filter browser typecheck
 pnpm --filter website dev
 pnpm --filter website build
 pnpm --filter website typecheck
@@ -89,4 +89,4 @@ You can also run app-local scripts from inside each app directory.
 - Run `pnpm typecheck` in the relevant app after edits
 - Use Biome, not ESLint or Prettier, for formatting and linting workflows
 - Prefer updating the app-specific README when changing app behavior
-- Be careful with generated output under `apps/chrome/.output`, `apps/chrome/.wxt`, and `apps/website/.next`
+- Be careful with generated output under `apps/browser/.output`, `apps/browser/.wxt`, and `apps/website/.next`

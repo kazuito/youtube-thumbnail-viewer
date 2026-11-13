@@ -7,7 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const app = fileURLToPath(new URL("../", import.meta.url));
-const { name, version } = JSON.parse(
+const { version } = JSON.parse(
   await readFile(path.join(app, "package.json"), "utf8"),
 );
 const output = path.join(app, ".output");
@@ -38,7 +38,10 @@ for (const browser of ["chrome", "firefox"]) {
     assert.equal(manifest.browser_specific_settings, undefined);
   }
 }
-const archive = path.join(output, `${name}-${version}-sources.zip`);
+const archive = path.join(
+  output,
+  `youtube-thumbnail-viewer-${version}-sources.zip`,
+);
 const entries = execFileSync("unzip", ["-Z1", archive], { encoding: "utf8" })
   .trim()
   .split("\n");
@@ -46,8 +49,8 @@ for (const required of [
   "package.json",
   "pnpm-lock.yaml",
   "pnpm-workspace.yaml",
-  "apps/chrome/wxt.config.ts",
-  "apps/chrome/SOURCE_CODE_REVIEW.md",
+  "apps/browser/wxt.config.ts",
+  "apps/browser/SOURCE_CODE_REVIEW.md",
 ]) {
   assert(entries.includes(required), `Missing source: ${required}`);
 }
@@ -59,7 +62,7 @@ for (const entry of entries) {
     `Unexpected source: ${entry}`,
   );
   assert(!entry.startsWith("apps/website/"));
-  assert.notEqual(entry, "apps/chrome/pnpm-lock.yaml");
+  assert.notEqual(entry, "apps/browser/pnpm-lock.yaml");
 }
 async function hashes(root, relative = "") {
   const result = {};
@@ -81,11 +84,11 @@ try {
   const run = (args) =>
     execFileSync("pnpm", args, { cwd: directory, stdio: "inherit" });
   run(["install", "--frozen-lockfile", "--ignore-scripts"]);
-  run(["--filter", "chrome", "exec", "wxt", "prepare"]);
-  run(["--filter", "chrome", "build:firefox"]);
+  run(["--filter", "browser", "exec", "wxt", "prepare"]);
+  run(["--filter", "browser", "build:firefox"]);
   assert.deepEqual(
     await hashes(path.join(output, "firefox-mv3")),
-    await hashes(path.join(directory, "apps/chrome/.output/firefox-mv3")),
+    await hashes(path.join(directory, "apps/browser/.output/firefox-mv3")),
   );
   console.log("Chrome/Firefox manifests and Firefox source rebuild verified.");
 } finally {
