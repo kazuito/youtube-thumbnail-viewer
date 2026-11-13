@@ -2,121 +2,181 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { ContentScriptContext } from "wxt/utils/content-script-context";
 
 vi.mock("wxt/utils/content-script-ui/integrated", () => ({
-  createIntegratedUi: vi.fn(() => ({ autoMount: vi.fn() })),
+  createIntegratedUi: vi.fn(),
 }));
-
-// Import after mock registration
-const { clean, updateThumbnail } = await import("../../lib/inject");
+const { clean, updateThumbnail, selectors } = await import("../../lib/inject");
 const { createIntegratedUi } = await import(
   "wxt/utils/content-script-ui/integrated"
 );
+let images: HTMLImageElement[];
+let remove: ReturnType<typeof vi.fn>;
+let invalidated: () => void;
+let mount: () => void;
+let unmount: () => void;
+let context: ContentScriptContext;
 
-const fakeContext = {} as ContentScriptContext;
-
-function setupExistingThumbnail(src: string) {
-  const container = document.createElement("ytv-thumbnail-preview");
-  const anchor = document.createElement("a");
-  anchor.className = "ytv-anchor";
-  const image = document.createElement("img");
-  image.className = "ytv-image";
-  image.src = src;
-  anchor.appendChild(image);
-  container.appendChild(anchor);
-  document.body.appendChild(container);
+beforeEach(() => {
+  vi.useFakeTimers();
+  images = [];
+  context = {
+    onInvalidated: vi.fn((callback) => {
+      invalidated = callback;
+    }),
+  } as unknown as ContentScriptContext;
+  const create = document.createElement.bind(document);
+  vi.spyOn(document, "createElement").mockImplementation((tag, options) => {
+    const element = create(tag, options);
+    if (tag === "img") images.push(element as HTMLImageElement);
+    return element;
+  });
+  vi.mocked(createIntegratedUi).mockImplementation((_ctx, options) => {
+    const wrapper = create("ytv-thumbnail-preview");
+    let mounted: unknown;
+    mount = () => {
+      document.body.append(wrapper);
+      mounted = options.onMount?.(wrapper);
+    };
+    unmount = () => {
+      options.onRemove?.(mounted);
+      wrapper.replaceChildren();
+      wrapper.remove();
+    };
+    remove = vi.fn(unmount);
+    return {
+      wrapper,
+      autoMount: mount,
+      mount,
+      remove,
+    } as unknown as ReturnType<typeof createIntegratedUi>;
+  });
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
+});
+afterEach(() => {
+  clean();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+  vi.clearAllMocks();
+  vi.useRealTimers();
+  document.body.replaceChildren();
+});
+async function update(id: string | null) {
+  const promise = updateThumbnail(context, id);
+  await vi.advanceTimersByTimeAsync(240);
+  await promise;
+}
+function load() {
+  images.at(-1)?.dispatchEvent(new Event("load"));
 }
 
-describe("clean()", () => {
-  afterEach(() => {
-    document.body.innerHTML = "";
-  });
-
-  it("removes injected ytv-thumbnail-preview elements", () => {
-    document.body.innerHTML = `
-      <ytv-thumbnail-preview></ytv-thumbnail-preview>
-      <ytv-thumbnail-preview></ytv-thumbnail-preview>
-    `;
-    clean();
-    expect(document.querySelectorAll("ytv-thumbnail-preview")).toHaveLength(0);
-  });
-
-  it("is a no-op when nothing to clean", () => {
-    expect(() => clean()).not.toThrow();
-    expect(document.querySelectorAll("ytv-thumbnail-preview")).toHaveLength(0);
-  });
-});
-
-describe("updateThumbnail()", () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-    vi.stubGlobal("alert", vi.fn());
-    vi.mocked(createIntegratedUi).mockReturnValue({
-      autoMount: vi.fn(),
-    } as unknown as ReturnType<typeof createIntegratedUi>);
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
-    vi.unstubAllGlobals();
-    vi.clearAllMocks();
-    document.body.innerHTML = "";
-  });
-
-  it("calls clean() and returns early when videoId is null", async () => {
-    setupExistingThumbnail("https://img.youtube.com/vi/abc/maxresdefault.jpg");
-    await updateThumbnail(fakeContext, null);
-    expect(document.querySelectorAll("ytv-thumbnail-preview")).toHaveLength(0);
-  });
-
-  it("calls clean() when thumbnail fetch returns nothing", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false }));
-    setupExistingThumbnail("https://img.youtube.com/vi/abc/maxresdefault.jpg");
-
-    const promise = updateThumbnail(fakeContext, "abc123");
-    await vi.runAllTimersAsync();
-    await promise;
-
-    expect(document.querySelectorAll("ytv-thumbnail-preview")).toHaveLength(0);
-  });
-
-  it("calls createIntegratedUi when no existing anchor is present", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
-
-    const promise = updateThumbnail(fakeContext, "abc123");
-    await vi.runAllTimersAsync();
-    await promise;
-
-    expect(createIntegratedUi).toHaveBeenCalledOnce();
+describe("thumbnail lifecycle", () => {
+  it("mounts the loaded image and matching link", async () => {
+    await update("videoA");
+    load();
     expect(
-      vi.mocked(createIntegratedUi).mock.results[0]?.value.autoMount,
-    ).toHaveBeenCalledOnce();
+      document.querySelector(selectors.image)?.getAttribute("src"),
+    ).toContain("/videoA/maxresdefault.jpg");
+    expect(
+      document.querySelector(selectors.anchor)?.getAttribute("href"),
+    ).toContain("/videoA/maxresdefault.jpg");
   });
-
-  it("swaps image when existing anchor has a different src", async () => {
-    const oldUrl = "https://img.youtube.com/vi/abc123/mqdefault.jpg";
-    const newUrl = "https://img.youtube.com/vi/abc123/maxresdefault.jpg";
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
-    setupExistingThumbnail(oldUrl);
-
-    const promise = updateThumbnail(fakeContext, "abc123");
-    await vi.runAllTimersAsync();
-    await promise;
-
-    // createIntegratedUi should NOT be called — existing anchor is reused
+  it("keeps the same video visible without another request", async () => {
+    await update("videoA");
+    load();
+    await update("videoA");
+    expect(fetch).toHaveBeenCalledOnce();
+    expect(
+      document.querySelector(selectors.image)?.hasAttribute("data-hidden"),
+    ).toBe(false);
+  });
+  it("replaces the old video after the new image loads", async () => {
+    await update("videoA");
+    load();
+    const oldRemove = remove;
+    await update("videoB");
+    load();
+    expect(oldRemove).toHaveBeenCalledOnce();
+    expect(document.querySelectorAll(selectors.image)).toHaveLength(1);
+    expect(
+      document.querySelector(selectors.anchor)?.getAttribute("href"),
+    ).toContain("/videoB/");
+  });
+  it("does not mount a late response after leaving watch", async () => {
+    let resolve!: (value: { ok: boolean }) => void;
+    vi.mocked(fetch).mockImplementationOnce(
+      () =>
+        new Promise((r) => {
+          resolve = r as typeof resolve;
+        }),
+    );
+    const pending = updateThumbnail(context, "videoA");
+    clean();
+    resolve({ ok: true });
+    await vi.advanceTimersByTimeAsync(240);
+    await pending;
     expect(createIntegratedUi).not.toHaveBeenCalled();
-    // alert should NOT be called
-    expect(vi.mocked(alert)).not.toHaveBeenCalled();
-    // A new image with the new src should have been created (appended via onload)
-    // We verify the anchor href was queued to update
-    const anchor = document.querySelector<HTMLAnchorElement>(
-      "ytv-thumbnail-preview .ytv-anchor",
+  });
+  it("ignores A when B finishes first", async () => {
+    let resolve!: (value: { ok: boolean }) => void;
+    vi.mocked(fetch).mockImplementationOnce(
+      () =>
+        new Promise((r) => {
+          resolve = r as typeof resolve;
+        }),
     );
-    expect(anchor).not.toBeNull();
-    // The new image is appended after onload fires — simulate it
-    const newImg = document.querySelector<HTMLImageElement>(
-      `ytv-thumbnail-preview .ytv-anchor img[src="${newUrl}"]`,
-    );
-    // onload hasn't fired in jsdom/happy-dom, but we can confirm old src still there
-    // and no alert/createIntegratedUi means the swap branch was taken
-    expect(newImg).toBeNull(); // onload hasn't fired yet in test env
+    const pending = updateThumbnail(context, "videoA");
+    await update("videoB");
+    load();
+    resolve({ ok: true });
+    await pending;
+    expect(
+      document.querySelector(selectors.anchor)?.getAttribute("href"),
+    ).toContain("/videoB/");
+  });
+  it("removes the UI and observer on cleanup", async () => {
+    await update("videoA");
+    load();
+    clean();
+    expect(remove).toHaveBeenCalledOnce();
+    expect(document.querySelector(selectors.anchor)).toBeNull();
+  });
+  it("ignores image load after navigation", async () => {
+    await update("videoA");
+    const image = images.at(-1);
+    await update(null);
+    image?.dispatchEvent(new Event("load"));
+    expect(document.querySelector(selectors.anchor)).toBeNull();
+  });
+  it("cleans up on image error", async () => {
+    await update("videoA");
+    images.at(-1)?.dispatchEvent(new Event("error"));
+    expect(remove).toHaveBeenCalledOnce();
+  });
+  it("cleans up on image timeout", async () => {
+    await update("videoA");
+    await vi.advanceTimersByTimeAsync(10_000);
+    expect(remove).toHaveBeenCalledOnce();
+  });
+  it("remounts the current image when YouTube replaces the description", async () => {
+    await update("videoA");
+    load();
+    unmount();
+    mount();
+    load();
+    expect(document.querySelectorAll(selectors.image)).toHaveLength(1);
+    expect(
+      document.querySelector(selectors.anchor)?.getAttribute("href"),
+    ).toContain("/videoA/");
+  });
+  it("cleans up when the context is invalidated", async () => {
+    await update("videoA");
+    invalidated();
+    expect(remove).toHaveBeenCalledOnce();
+  });
+  it("removes an existing UI when every probe fails", async () => {
+    await update("videoA");
+    load();
+    vi.mocked(fetch).mockResolvedValue({ ok: false } as Response);
+    await update("videoB");
+    expect(document.querySelector(selectors.anchor)).toBeNull();
   });
 });

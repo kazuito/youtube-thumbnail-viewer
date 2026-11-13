@@ -1,14 +1,12 @@
 import { defineContentScript } from "wxt/utils/define-content-script";
-import { MatchPattern } from "wxt/utils/match-patterns";
 import { clean, updateThumbnail } from "@/lib/inject";
 import "../assets/styles.css";
 import { parseVideoId } from "@/lib/youtube";
 
-const watchPattern = new MatchPattern("*://www.youtube.com/watch*");
-const isWatchPage = (url: URL) => watchPattern.includes(url);
+const isWatchPage = (url: URL) => url.pathname === "/watch";
 
 export default defineContentScript({
-  matches: ["*://www.youtube.com/*"],
+  matches: ["https://www.youtube.com/*"],
   main: (context) => {
     // Initial injection
     const href = window.location.href;

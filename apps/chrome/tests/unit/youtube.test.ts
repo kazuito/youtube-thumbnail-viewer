@@ -65,3 +65,47 @@ describe("getAvailableThumbnailUrl", () => {
     expect(result).toBeNull();
   });
 });
+
+describe("thumbnail network failures", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("falls back after a rejected request", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockRejectedValueOnce(new TypeError("offline"))
+        .mockResolvedValueOnce({ ok: true }),
+    );
+    expect(await getAvailableThumbnailUrl("video")).toContain("mqdefault.jpg");
+  });
+
+  it("returns null after all requests reject", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("offline")));
+    expect(await getAvailableThumbnailUrl("video")).toBeNull();
+  });
+
+  it("does not request anything after cancellation", async () => {
+    const controller = new AbortController();
+    controller.abort();
+    vi.stubGlobal("fetch", vi.fn());
+    expect(
+      await getAvailableThumbnailUrl("video", controller.signal),
+    ).toBeNull();
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("omits credentials and referrers", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
+    await getAvailableThumbnailUrl("video");
+    expect(fetch).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        method: "HEAD",
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+        signal: expect.any(AbortSignal),
+      }),
+    );
+  });
+});

@@ -16,7 +16,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 12
+          version: 12.18.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,3 +38,14 @@ jobs:
 
       - name: Run unit tests
         run: pnpm test
+
+      - name: Build and validate Firefox extension
+        run: |
+          pnpm --filter chrome build:firefox
+          pnpm --filter chrome lint:firefox
+
+      - name: Package extensions and verify Firefox source rebuild
+        run: |
+          pnpm --filter chrome zip
+          pnpm --filter chrome zip:firefox
+          pnpm --filter chrome verify:packages
