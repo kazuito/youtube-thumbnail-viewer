@@ -72,6 +72,15 @@ pnpm verify:packages # Check manifests and rebuild Firefox from sources (build/z
 - Local build artifacts are generated under `.output/` and `.wxt/`.
 - The marketing website lives in `../website` and imports this package's version from `package.json` for the `/chrome` landing page.
 
+## GitHub Releases
+
+Push a version tag matching `apps/chrome/package.json` (for example, `0.0.8`
+or `v0.0.8`) to create a GitHub Release automatically. The release workflow
+runs extension lint, type checks, unit tests, Firefox validation, and the
+source rebuild check before publishing. It attaches the Chrome ZIP, Firefox
+ZIP, and Firefox review source ZIP, with automatically generated release notes.
+Store submission and Firefox signing remain separate steps.
+
 ## Firefox testing and distribution
 
 Install dependencies from the repository root with `pnpm install --frozen-lockfile`.
